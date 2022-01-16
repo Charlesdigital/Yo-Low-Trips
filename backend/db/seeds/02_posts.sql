@@ -11,7 +11,7 @@ VALUES
 -- Toronto to Cairo
     (4, 'YTO', 'Toronto', 'CAI', 'Cairo International Airport', 'YYZ', 'CAI', 125, 'EK', '444', '2022-01-30T20:15:00-05:00', '2022-02-09T18:23:00-05:00', 1, 1, 930, 'https://en.wikipedia.org/wiki/Cairo'),
 -- Toronto to Honolulu
-    (5, 'YTO', 'Toronto', 'HNL', 'Honolulu', 'YYZ', 'HNL', 200, 'AC', '555', '2022-01-29T19:00:00-05:00', '2022-02-07T16:01:00-05:00', 1, 1, 780, 'https://en.wikipedia.org/wiki/Honolulu')
+    (5, 'YTO', 'Toronto', 'HNL', 'Honolulu', 'YYZ', 'HNL', 200, 'AC', '555', '2022-01-29T19:00:00-05:00', '2022-02-07T16:01:00-05:00', 1, 1, 780, 'https://en.wikipedia.org/wiki/Honolulu'),
 -- Vancouver to London
     (6, 'YVR', 'Vancouver', 'LON', 'London', 'YVR', 'LHR', 150, 'AC', '666', '2022-01-29T16:50:00-05:00', '2022-02-03T10:10:00-05:00', 0, 0, 540, 'https://en.wikipedia.org/wiki/London'),
 -- Vancouver to Las Vegas
@@ -32,9 +32,9 @@ VALUES
 INSERT INTO activities(favourite_id, name, start_at, end_at)
 VALUES
 -- Japan
-    (1, 'Visit Tokyo Tower', '2022-01-29T11:00:00', '2022-01-29T11:00:00'),
+    (1, 'Visit Tokyo Tower', '2022-01-29T11:00:00', '2022-01-29T13:00:00'),
     (1, 'Attend a Tea Ceremony', '2022-01-29T14:00:00', '2022-01-29T16:00:00'),
-    (1, 'Try Ramen Noodles', '2022-01-29T18:00:00', '2022-01-30T17:00:00'),
+    (1, 'Try Ramen Noodles', '2022-01-29T18:00:00', '2022-01-30T19:00:00'),
     (1, 'Visit a Hot Spring', '2022-01-30T17:00:00', '2022-01-31T11:00:00'),
 -- Honolulu
     (3, 'Try Hula Dancing', '2022-02-01T:15:00:00', '2022-02-01T16:00:00'),

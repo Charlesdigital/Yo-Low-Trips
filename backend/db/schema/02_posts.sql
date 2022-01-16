@@ -14,11 +14,11 @@ CREATE TABLE flights(
     price INTEGER NOT NULL,
     airline VARCHAR(2) NOT NULL,
     flight_number VARCHAR(4) NOT NULL,
-    departure_at DATETIME,
-    return_at DATETIME,
+    departure_at TIMESTAMP,
+    return_at TIMESTAMP,
     transfers INTEGER,
     return_transfers INTEGER,
-    duration INTEGER NOT NULL,
+    duration INTEGER NOT NULL, -- in minutes
     link TEXT
 );
 
@@ -32,6 +32,6 @@ CREATE TABLE activities (
     id SERIAL PRIMARY KEY NOT NULL,
     favourite_id INTEGER REFERENCES favourites(id) ON DELETE CASCADE,
     name VARCHAR(250),
-    start_at DATETIME,
-    end_at DATETIME
+    start_at TIMESTAMP,
+    end_at TIMESTAMP
 );
