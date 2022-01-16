@@ -1,15 +1,17 @@
 module.exports = (db) => {
+    // Get a single user from database given their id
     const getUsers = () => {
         const query = {
-            text: 'SELECT * FROM users',
-        };
+            text: `SELECT * FROM users WHERE id = $1`,
+        }
 
         return db
             .query(query)
             .then((result) => result.rows)
             .catch((err) => err);
     };
-
+    
+    // Get a single user from database given their email
     const getUserByEmail = email => {
 
         const query = {
@@ -22,7 +24,8 @@ module.exports = (db) => {
             .then(result => result.rows[0])
             .catch((err) => err);
     }
-
+    
+    // Add user to database
     const addUser = (firstName, lastName, email, password) => {
         const query = {
             text: `INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *` ,
@@ -34,12 +37,14 @@ module.exports = (db) => {
             .catch(err => err);
     }
 
-    const getUsersPosts = () => {
+    const getAllFavouritesForUser = (userId) => {
         const query = {
-            text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
-        FROM users
-        INNER JOIN posts
-        ON users.id = posts.user_id`
+            text: `SELECT * FROM favourites
+            WHERE user_id = $1`,
+        //     text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
+        // FROM users
+        // INNER JOIN posts
+        // ON users.id = posts.user_id`
         }
 
         return db.query(query)
@@ -52,6 +57,6 @@ module.exports = (db) => {
         getUsers,
         getUserByEmail,
         addUser,
-        getUsersPosts
+        getAllFavouritesForUser
     };
 };
