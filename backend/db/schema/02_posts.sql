@@ -1,25 +1,19 @@
 DROP TABLE IF EXISTS flights CASCADE;
 DROP TABLE IF EXISTS favourites CASCADE;
 DROP TABLE IF EXISTS activities CASCADE;
+DROP TABLE IF EXISTS cities CASCADE;
 
--- Parameters from FLIGHTS SPECIAL OFFERS
-CREATE TABLE flights(
+-- Parameters from Cheapest Tickets
+CREATE TABLE flights (
     id SERIAL PRIMARY KEY NOT NULL,
     origin VARCHAR(3) NOT NULL,
-    origin_name VARCHAR(250) NOT NULL,
-    origin_airport VARCHAR(3) NOT NULL,
     destination VARCHAR(3) NOT NULL,
-    destination_name VARCHAR(250) NOT NULL,
-    destination_airport VARCHAR(3) NOT NULL,
     price INTEGER NOT NULL,
     airline VARCHAR(2) NOT NULL,
     flight_number VARCHAR(4) NOT NULL,
     departure_at TIMESTAMP,
     return_at TIMESTAMP,
-    transfers INTEGER,
-    return_transfers INTEGER,
-    duration INTEGER NOT NULL, -- in minutes
-    link TEXT
+    expires_at TIMESTAMP
 );
 
 CREATE TABLE favourites (
@@ -34,4 +28,9 @@ CREATE TABLE activities (
     name VARCHAR(250),
     start_at TIMESTAMP,
     end_at TIMESTAMP
+);
+
+CREATE TABLE cities (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(250)
 );
