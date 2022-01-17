@@ -53,10 +53,24 @@ module.exports = (db) => {
 
     }
 
+    const getCityForOrigin = (id) => {
+        const query = {
+           text: `SELECT name
+            FROM cities
+            WHERE id = $1`
+        }
+        return db.query(query)
+            .then(result => result.rows)
+            .catch(err => err);
+    }
+
+    const get
+
     return {
         getUsers,
         getUserByEmail,
         addUser,
-        getAllFavouritesForUser
+        getAllFavouritesForUser,
+        getCityForOrigin
     };
 };
