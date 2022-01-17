@@ -1,8 +1,36 @@
-DROP TABLE IF EXISTS posts CASCADE;
+DROP TABLE IF EXISTS flights CASCADE;
+DROP TABLE IF EXISTS favourites CASCADE;
+DROP TABLE IF EXISTS activities CASCADE;
+DROP TABLE IF EXISTS cities CASCADE;
 
-CREATE TABLE posts(
+-- Parameters from Cheapest Tickets
+CREATE TABLE flights (
     id SERIAL PRIMARY KEY NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    content TEXT,
-    user_id INTEGER REFERENCES users(id)
+    origin VARCHAR(3) NOT NULL,
+    destination VARCHAR(3) NOT NULL,
+    price INTEGER NOT NULL,
+    airline VARCHAR(2) NOT NULL,
+    flight_number VARCHAR(4) NOT NULL,
+    departure_at TIMESTAMP,
+    return_at TIMESTAMP,
+    expires_at TIMESTAMP
+);
+
+CREATE TABLE favourites (
+    id SERIAL PRIMARY KEY NOT NULL,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    flight_id INTEGER REFERENCES flights(id) ON DELETE CASCADE
+);
+
+CREATE TABLE activities (
+    id SERIAL PRIMARY KEY NOT NULL,
+    favourite_id INTEGER REFERENCES favourites(id) ON DELETE CASCADE,
+    name VARCHAR(250),
+    start_at TIMESTAMP,
+    end_at TIMESTAMP
+);
+
+CREATE TABLE cities (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(250)
 );
