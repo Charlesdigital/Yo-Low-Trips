@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import SearchBar from "./components/SearchBar";
+
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import InputCity from "./components/InputCity";
+import Flights from "./components/Flights";
+import Favorites from "./components/Favorites";
+
 // import AllFlights from "components/allflights"
 function App() {
   //1.Initial state
@@ -72,9 +79,24 @@ function App() {
   //pass in state
 
   return (
-    <div className="App">
-      <SearchBar />
-    </div>
+    <Router>
+      <div className="App">
+        {/* NavBar */}
+        <div className="content">
+          <Switch>
+            <Route exact path="/">
+              <InputCity />
+            </Route>
+            <Route exact path="/flights">
+              <Flights />
+            </Route>
+            <Route exact path="/favorites">
+              <Favorites />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 
