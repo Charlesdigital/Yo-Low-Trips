@@ -52,3 +52,9 @@ VALUES
     ('Calgary'),
     ('Toronto'),
     ('Montreal');
+
+INSERT INTO airports(airport_code, city_id, airport_name)
+VALUES
+    ('YYZ', 3, 'Toronto Pearson Airport'),
+    ('YTZ', 3, 'Billy Bishop Toronto City Airport'),
+    ('YTO', 3, 'All Toronto Airports');
