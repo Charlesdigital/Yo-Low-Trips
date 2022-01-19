@@ -1,13 +1,13 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Flights(props) {
+export default function Favourites(props) {
   const [state, setState] = useState({
     flights: [],
   });
   useEffect(() => {
     axios
-      .get("http://localhost:3001/flights")
+      .get("http://localhost:3001/favourites")
       .then((res) => {
         console.log("axios req data", res);
         const flightsData = res.data;
@@ -25,12 +25,8 @@ export default function Flights(props) {
       <ul>
         {state.flights.map((flight) => (
           <li key={flight.id}>
-            Origin: {flight.origin}, Price: {flight.price}, Destination:
-            {flight.destination}, 
-            Expires at: {flight.expires_at},
-            Airline: {flight.airline},
-            Departure At: {flight.departure_at},
-            Return At: {flight.return_at}
+            Destination Name: {flight.destination},
+            Flight Id: {flight.id}
 
           </li>
         ))}
