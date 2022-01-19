@@ -3,19 +3,18 @@ import React from "react";
 import { useState } from "react";
 
 export default function SearchBar(props) {
-  const [student, setStudent] = useState(props.student || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [origin, setOrigin] = useState(props.origin || "");
 
   return (
     <div>
       <input
         name="name"
         type="text"
-        placeholder="Enter Student Name"
-        value={student}
-        onChange={(event) => setStudent(event.target.value)}
+        placeholder="Where are you departing from?"
+        value={origin}
+        onChange={(event) => setOrigin(event.target.value)}
       />
-      {console.log("NAME", student)}
+      {console.log("DEPARTING CITY", origin)}
     </div>
   );
 }

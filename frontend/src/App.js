@@ -1,3 +1,4 @@
+/* Root/ Parent component */
 import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
@@ -7,7 +8,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import InputCity from "./components/InputCity";
 import Flights from "./components/Flights";
-import Favorites from "./components/Favorites";
+import Favourites from "./components/Favourites";
+import Login from "./components/Login";
 
 // import AllFlights from "components/allflights"
 function App() {
@@ -61,15 +63,17 @@ function App() {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
         const flightData = response.data;
         const flightDestination = flightData.data;
-        console.log("DESTINATION FLIGHT DATA", flightDestination["ATL"]);
+        //console.log("DESTINATION FLIGHT DATA", flightDestination["ATL"]);
       })
       .catch(function (error) {
         console.error(error);
       });
   }, []);
+
+
 
   // const handleSubmit = () => {
   //   axios.post('/', {}
@@ -78,20 +82,31 @@ function App() {
   // };
   //pass in state
 
+ //  for each flight data item
+ //  render a form that has each flight data.
+ // the form will have a on submit handler
+ // scheduler appointment form (ie. onsave) instead of onsave use handle submit
+ // tiny app ex. 
+
+ // filters are button siblings to the filter components
   return (
     <Router>
       <div className="App">
         {/* NavBar */}
         <div className="content">
           <Switch>
-            <Route exact path="/">
+            {/* all routes goes inside switch component */}
+            <Route exact path="/"> {/* homepage */}
               <InputCity />
+            </Route>
+            <Route exact path="/login">
+              <Login />
             </Route>
             <Route exact path="/flights">
               <Flights />
             </Route>
-            <Route exact path="/favorites">
-              <Favorites />
+            <Route exact path="/favourites">
+              <Favourites />
             </Route>
           </Switch>
         </div>
@@ -99,5 +114,5 @@ function App() {
     </Router>
   );
 }
-
+  
 export default App;
