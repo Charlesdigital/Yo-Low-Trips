@@ -61,10 +61,10 @@ function App() {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
         const flightData = response.data;
         const flightDestination = flightData.data;
-        console.log("DESTINATION FLIGHT DATA", flightDestination["ATL"]);
+        //console.log("DESTINATION FLIGHT DATA", flightDestination["ATL"]);
       })
       .catch(function (error) {
         console.error(error);
@@ -99,5 +99,5 @@ function App() {
     </Router>
   );
 }
-
+  
 export default App;
