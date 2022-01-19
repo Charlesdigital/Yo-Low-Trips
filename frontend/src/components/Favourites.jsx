@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Flights(props) {
+export default function Favourites(props) {
   const [state, setState] = useState({
     flights: [],
   });
