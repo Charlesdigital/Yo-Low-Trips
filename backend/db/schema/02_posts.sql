@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS flights CASCADE;
 DROP TABLE IF EXISTS favourites CASCADE;
 DROP TABLE IF EXISTS activities CASCADE;
 DROP TABLE IF EXISTS cities CASCADE;
+DROP TABLE IF EXISTS airports CASCADE;
 
 -- Parameters from Cheapest Tickets
 CREATE TABLE flights (
@@ -33,4 +34,12 @@ CREATE TABLE activities (
 CREATE TABLE cities (
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(250)
+
+);
+
+CREATE TABLE airports (
+    id SERIAL PRIMARY KEY NOT NULL,
+    airport_code VARCHAR(250),
+    city_id INTEGER REFERENCES cities(id) ON DELETE CASCADE,
+    airport_name VARCHAR(250)
 );
