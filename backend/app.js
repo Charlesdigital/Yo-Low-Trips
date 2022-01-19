@@ -13,7 +13,6 @@ const app = express();
 //const flightRoutes = require("./routes/flightsRoute");
 
 const db = require("./db");
-const helpers = require("./helpers/dbHelpers")(db);
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -30,8 +29,11 @@ app.use(express.static(path.join(__dirname, "public")));
 //tutorial
 //console.log("HELPERS", helpers)
 
-
+//index router
+app.use("/index", indexRouter)
 app.use("/flights", flightRouter(db));
+// app.use('/', indexRouter);
+app.use('/users', usersRouter(db));
 
 app.use("/favourites", favouritesRouter(db));
 
