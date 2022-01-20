@@ -2,7 +2,6 @@
   "name": "backend-yolo-trip",
   "version": "0.0.0",
   "private": true,
-  "proxy": "http://localhost:3001",
   "scripts": {
     "dev": "nodemon --legacy",
     "db:reset": "node ./db/reset.js",

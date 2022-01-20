@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 function requestAirportCode(city) {
   console.log("test3", city)
-  axios.get("/airports")
+  axios.get(`/airports/${city}`)
   .then(function (response) {
     console.log(response);
   })
