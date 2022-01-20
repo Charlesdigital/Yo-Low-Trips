@@ -23,7 +23,7 @@ module.exports = (db) => {
         .then((result) => result.rows[0])
         .catch((err) => err);
     };
-  
+
     // Add user to database
     const addUser = (firstName, lastName, email, password) => {
         const query = {
@@ -83,7 +83,7 @@ module.exports = (db) => {
           .then((result) => result.rows)
           .catch((err) => err);
     };
-    
+
     const getFlights = () => {
         const query = {
             text: `SELECT *
@@ -94,6 +94,25 @@ module.exports = (db) => {
         .then((result) => result.rows)
         .catch((err) => err);
     };
+//Get all the airports code related to a city a user Inputs
+    const getAirportCodes = (name) => {
+        const query = {
+           text: `SELECT name, airport_code, airport_name
+           FROM cities
+           JOIN airports ON cities.id = city_id
+           WHERE name = '${name}'`,
+
+        }
+        console.log("test8", query)
+        return db.query(query)
+            .then(result => {
+                console.log("test9", result)
+
+            console.log("test6", result.rows)
+            return result.rows
+            })
+            .catch(err => err);
+    }
 
     return {
         getUsers,
@@ -103,7 +122,8 @@ module.exports = (db) => {
         addFavourite,
         getCityForOrigin,
         getFlights,
+        getAirportCodes
     };
 };
-    
-    
+
+

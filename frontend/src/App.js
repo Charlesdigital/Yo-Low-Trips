@@ -63,7 +63,7 @@ function App() {
     axios
       .request(options)
       .then(function (response) {
-        //console.log(response.data);
+        console.log(response.data);
         const flightData = response.data;
         const flightDestination = flightData.data;
         //console.log("DESTINATION FLIGHT DATA", flightDestination["ATL"]);
@@ -86,7 +86,7 @@ function App() {
  //  render a form that has each flight data.
  // the form will have a on submit handler
  // scheduler appointment form (ie. onsave) instead of onsave use handle submit
- // tiny app ex. 
+ // tiny app ex.
 
  // filters are button siblings to the filter components
   return (
@@ -114,5 +114,5 @@ function App() {
     </Router>
   );
 }
-  
+
 export default App;

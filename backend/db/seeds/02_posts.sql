@@ -47,14 +47,19 @@ VALUES
 
 INSERT INTO cities(name)
 VALUES
--- Canada
+-- Origin
     ('Vancouver'),
     ('Calgary'),
     ('Toronto'),
+    ('Tokyo'),
     ('Montreal');
 
 INSERT INTO airports(airport_code, city_id, airport_name)
 VALUES
     ('YYZ', 3, 'Toronto Pearson Airport'),
     ('YTZ', 3, 'Billy Bishop Toronto City Airport'),
-    ('YTO', 3, 'All Toronto Airports');
+    ('YTO', 3, 'All Toronto Airports'),
+    ('YVR', 1, 'Vancouver International Airport'),
+    ('YYC', 2, 'Vancouver International Airport'),
+    ('HND', 4, 'Haneda to Airports'),
+    ('NRT', 4, 'Narita to Airports');

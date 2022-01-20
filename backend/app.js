@@ -8,6 +8,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const flightRouter = require("./routes/flights")
 const favouritesRouter = require("./routes/favourites")
+const airportsRouter = require("./routes/airports")
 
 const app = express();
 //const flightRoutes = require("./routes/flightsRoute");
@@ -36,6 +37,7 @@ app.use("/flights", flightRouter(db));
 app.use('/users', usersRouter(db));
 
 app.use("/favourites", favouritesRouter(db));
+app.use("/airports", airportsRouter(db));
 
 
 module.exports = app;
