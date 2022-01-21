@@ -34,7 +34,7 @@ module.exports = (db) => {
         }
         return db
         .query(query, [firstName, lastName, email, password])
-        .then((result) => result.rows[0])
+        .then((result) => result.rows[0]) // return first obj
         .catch((err) => err);
     };
 
@@ -46,14 +46,40 @@ module.exports = (db) => {
                 JOIN users ON users.id = favourites.user_id
                 JOIN flights ON flights.id = favourites.flight_id
                 WHERE favourites.user_id = $1`,
-        //     text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
-        // FROM users
-        // INNER JOIN posts
-        // ON users.id = posts.user_id`
+            Value: [userId]
+        }
+        return db
+            .query(query, [userId])
+            .then(result => result.rows) // returns the whole obj
+            .catch(err => err);
+    };
+
+    // Add a single flight to favourites database for a user given their id
+    const addFavourite = (userId, flightId) => {
+        const query = {
+            text:`
+                INSERT INTO favourites (user_id, flight_id)
+                VALUES ($1, $2)
+                RETURNING *;`,
+            Value: [userId, flightId]
         }
         return db
             .query(query, [userId, flightId])
             .then(result => result.rows[0])
+            .catch(err => err);
+    };
+
+    // remove a single flight from favourites database for a user
+    const removeFavourite = (favId) => {
+        const query = {
+            text: `
+                DELETE FROM favourites
+                WHERE favourites.id = $1`,
+            Value: [favId]
+        }
+        return db
+            .query(query, [favId])
+            .then(result => result.rows)
             .catch(err => err);
     };
 
@@ -106,10 +132,11 @@ module.exports = (db) => {
         addUser,
         getAllFavouritesForUser,
         addFavourite,
+        removeFavourite,
         getCityForOrigin,
         getFlights,
         getAirportCodes
     };
 };
-
-
+    
+    
