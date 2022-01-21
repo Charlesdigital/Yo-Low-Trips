@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //index router
 app.use("/index", indexRouter)
-app.use("/flights", flightRouter(db));
+app.use("/api/flights", flightRouter(db));
 // app.use('/', indexRouter);
 app.use('/users', usersRouter(db));
 
