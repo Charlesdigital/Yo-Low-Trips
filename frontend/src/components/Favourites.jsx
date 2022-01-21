@@ -1,33 +1,40 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Favourites(props) {
   const [state, setState] = useState({
-    flights: [],
+    favourites: [],
   });
-  useEffect(() => {
+  useEffect(() => { // useEffect tells react to run the request once
+    let user = localStorage.getItem("YoLowUser");
+    user = JSON.parse(user) // convert back to object from JSON.stringify
+    // console.log(">>>>>>>", user)
     axios
-      .get("http://localhost:3001/favourites")
+      .get(`http://localhost:3001/user/favourites/${user.id}`)
       .then((res) => {
-        console.log("axios req data", res);
-        const flightsData = res.data;
-        setState((prev) => ({ ...prev, flights: flightsData }));
+        // console.log("axios req data", res);
+        const favData = res.data;
+        setState((prev) => ({ ...prev, favourites: favData }));
       })
       .catch((err) => {
         console.log("Error", err);
       });
-  }, []);
-  console.log("STATE", state.flights);
+  }, []); // dependency array which specify when the useeffect will fire
+  // console.log("STATE", state.favourites);
   return (
     <div>
       <p>Hello</p>
 
       <ul>
-        {state.flights.map((flight) => (
+        {state.favourites.map((flight) => (
           <li key={flight.id}>
-            Destination Name: {flight.destination},
-            Flight Id: {flight.id}
-
+            Origin: {flight.origin},
+            Destination: {flight.destination},
+            Departure Date: {flight.departure_at},
+            Return Date: {flight.return_at},
+            Promo Price: {flight.price},
+            Promo Expiration: {flight.expires_at}
+            <button type="submit">Remove</button>
           </li>
         ))}
       </ul>
