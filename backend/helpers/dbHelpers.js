@@ -105,7 +105,7 @@ module.exports = (db) => {
         getUserByEmail,
         addUser,
         getAllFavouritesForUser,
-        addFavourite,
+        //addFavourite,
         getCityForOrigin,
         getFlights,
         getAirportCodes
