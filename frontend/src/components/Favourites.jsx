@@ -17,7 +17,7 @@ export default function Favourites(props) {
       .then((res) => {
         // console.log("axios req data", res);
         const favData = res.data;
-        console.log("++++++++++++++++++", favData)
+        // console.log("++++++++++++++++++", favData)
         setState((prev) => ({ ...prev, favourites: favData }));
       })
       .catch((err) => {

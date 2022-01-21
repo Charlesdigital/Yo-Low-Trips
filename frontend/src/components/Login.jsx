@@ -25,7 +25,7 @@ export default function Login({ setUser }) {
       const user = response.data.user;
       setUser(user);
       localStorage.setItem( "YoLowUser", JSON.stringify(user)); //set the user to use multiple screens/page on app
-      console.log("Success!!!! response is:", response)
+      // console.log("Success!!!! response is:", response)
     }).catch(err => { 
       console.error(err.response.data);
     })
