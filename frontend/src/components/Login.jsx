@@ -16,19 +16,19 @@ export default function Login({ setUser }) {
     console.log ("LOGGING IN!!!")
     axios({
       method: "POST",
-      url: '/login', // uses POXY 
+      url: '/users/login', // uses POXY 
       data: {
         email: email,
         password: password
       },
     }).then((response) => {  // success message
       const user = response.data.user;
-      setUser(user); 
+      setUser(user);
       localStorage.setItem( "YoLowUser", JSON.stringify(user)); //set the user to use multiple screens/page on app
       console.log("Success!!!! response is:", response)
-  }).catch(err => { 
-    console.error(err.response.data);
-  })
+    }).catch(err => { 
+      console.error(err.response.data);
+    })
   };
 
   const handleLogin = async evt => {

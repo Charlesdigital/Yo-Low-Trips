@@ -7,6 +7,9 @@ export default function Favourites(props) {
   });
   useEffect(() => { // useEffect tells react to run the request once
     let user = localStorage.getItem("YoLowUser");
+    if (!user) {
+      // redirect to login
+    }
     user = JSON.parse(user) // convert back to object from JSON.stringify
     // console.log(">>>>>>>", user)
     axios
@@ -14,6 +17,7 @@ export default function Favourites(props) {
       .then((res) => {
         // console.log("axios req data", res);
         const favData = res.data;
+        console.log("++++++++++++++++++", favData)
         setState((prev) => ({ ...prev, favourites: favData }));
       })
       .catch((err) => {
