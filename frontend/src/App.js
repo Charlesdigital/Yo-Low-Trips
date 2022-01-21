@@ -5,11 +5,14 @@ import axios from "axios";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+
+import SearchBar from "./components/SearchBar";
 import Navbar from "./components/Navbar";
 import InputCity from "./components/InputCity";
 import Flights from "./components/Flights";
 import Favourites from "./components/Favourites";
 import Login from "./components/Login";
+import FlightCodesModal from "./components/FlightCodesModal";
 
 // import AllFlights from "components/allflights"
 function App() {
@@ -99,6 +102,7 @@ function App() {
             {/* all routes goes inside switch component */}
             <Route exact path="/"> {/* homepage */}
               <InputCity />
+
             </Route>
             <Route exact path="/login">
               <Login setUser={setUser}/>
