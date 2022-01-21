@@ -17,7 +17,7 @@ const style = {
     p: 4,
   };
 
-
+// FlightCodesModal is a child of InputCity
 export default function FlightCodesModal(props) {
 
     const handleOpen = () => props.setOpen(true);
