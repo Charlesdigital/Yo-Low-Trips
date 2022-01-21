@@ -26,8 +26,11 @@ function App() {
     return_at: "",
     origin: "nyc", //
   });
+
   const [user, setUser] = useState(
     null
+    // email: "",
+    // password: "",
   );
 
   // 1. use state for a simple string (City) = controled comp start undefiend or null

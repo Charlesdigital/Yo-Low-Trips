@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const router = require("express").Router();
+const session = require('express-session');
 const db = require("../db");
 const helpers = require("../helpers/dbHelpers")(db);
 
