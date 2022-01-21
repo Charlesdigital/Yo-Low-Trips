@@ -23,7 +23,7 @@ module.exports = (db) => {
         .then((result) => result.rows[0])
         .catch((err) => err);
     };
-
+  
     // Add user to database
     const addUser = (firstName, lastName, email, password) => {
         const query = {
@@ -52,21 +52,6 @@ module.exports = (db) => {
         // ON users.id = posts.user_id`
         }
         return db
-            .query(query, [userId])
-            .then(result => result.rows)
-            .catch(err => err);
-    }
-
-    // Add a single flight to favourites database for a user given their id
-    const addFavourite = (userId, flightId) => {
-        const query = {
-            text:`
-                INSERT INTO favourites (user_id, flight_id)
-                VALUES ($1, $2)
-                RETURNING *;`,
-            Value: [userId, flightId]
-        }
-        return db
             .query(query, [userId, flightId])
             .then(result => result.rows[0])
             .catch(err => err);
@@ -83,7 +68,7 @@ module.exports = (db) => {
           .then((result) => result.rows)
           .catch((err) => err);
     };
-
+    
     const getFlights = () => {
         const query = {
             text: `SELECT *
@@ -94,13 +79,14 @@ module.exports = (db) => {
         .then((result) => result.rows)
         .catch((err) => err);
     };
-//Get all the airports code related to a city a user Inputs
+
+    //Get all the airports code related to a city a user Inputs
     const getAirportCodes = (name) => {
         const query = {
-           text: `SELECT name, airport_code, airport_name
-           FROM cities
-           JOIN airports ON cities.id = city_id
-           WHERE name = '${name}'`,
+        text: `SELECT name, airport_code, airport_name
+        FROM cities
+        JOIN airports ON cities.id = city_id
+        WHERE name = '${name}'`,
 
         }
         console.log("test8", query)
@@ -112,8 +98,8 @@ module.exports = (db) => {
             return result.rows
             })
             .catch(err => err);
-    }
-
+    };
+    
     return {
         getUsers,
         getUserByEmail,
