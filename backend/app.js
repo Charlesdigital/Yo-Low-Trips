@@ -26,24 +26,15 @@ app.use(cors());
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
-// //index router
-// app.use("/index", indexRouter)
-
-//tutorial
-//console.log("HELPERS", helpers)
-
 //index router
 app.use("/index", indexRouter)
 app.use("/flights", flightRouter(db));
 // app.use('/', indexRouter);
-app.use('/', usersRouter(db));
-<<<<<<< Updated upstream
-=======
+app.use('/users', usersRouter(db));
 
-app.use("/user", favouritesRouter(db));
->>>>>>> Stashed changes
 
 app.use("/user", favouritesRouter(db));
 app.use("/airports", airportsRouter(db));
+
 
 module.exports = app;

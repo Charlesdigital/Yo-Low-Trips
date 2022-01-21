@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const session = require("express-session");
 const db = require("../db");
 const helpers = require("../helpers/dbHelpers")(db);
 
 module.exports = function (db) {
   /** GET users listing **/
-  router.get("/users", (req, res) =>
+  router.get("/", (req, res) =>
     helpers.getUsers(1)
       .then(data => {
         const user = data;
