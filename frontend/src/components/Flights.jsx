@@ -11,9 +11,12 @@ import {
   Grid,
 } from "@mui/material";
 import { useParams } from 'react-router-dom';
+import PriceFilter from "./PriceFilter"
 
 export default function Flights(props) {
   let {id} = useParams()
+  const [minMaxValue, setminMaxValue] = React.useState([200, 500]);
+
   const [state, setState] = useState({
     flights: [],
   });
@@ -35,7 +38,7 @@ export default function Flights(props) {
   //  console.log("THIS IS FLIGHT OBJECT+++++", flightObj)
   //  const { destination } = flightObj; // destructure so it's easy to access
   //  const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
-  //  const abc = new Date(departure_at).getTime(); 
+  //  const abc = new Date(departure_at).getTime();
   // let flight_id = `${airline}-${abc}-${flight_number}` // set this as id for local database
   // console.log(typeof flight_id)
    let user = JSON.parse(localStorage.getItem("YoLowUser"));
@@ -47,17 +50,22 @@ export default function Flights(props) {
     //  console.log("THIS IS RES+++++++", response)
    })
   }
+  console.log("test 25", minMaxValue)
 
   return (
     <div>
+      <PriceFilter
+      minMaxValue={minMaxValue}
+      setminMaxValue={setminMaxValue}
+      />
       <Typography variant="h1"> Flight Deals for {id} </Typography>
 
       <Container >
         <Grid container spacing={4}>
 
-          {state.flights.map((flight, index) => (
-          
-              <Grid item xs={12} sm={6} md={3} key={index}>
+          {state.flights.map((flight, index) => {
+            if (flight.flightData.price > minMaxValue[0] && flight.flightData.price < minMaxValue[1]) {
+              return (<Grid item xs={12} sm={6} md={3} key={index}>
                 <Card>
                   <CardContent>
                     <Typography gutterBottom variant="h5">
@@ -78,9 +86,11 @@ export default function Flights(props) {
                     </Button>
                   </CardContent>
                 </Card>
-              </Grid>
+              </Grid>)
+            }
 
-          ))}
+
+})}
         </Grid>
       </Container>
     </div>
