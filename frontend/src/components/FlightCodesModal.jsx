@@ -17,7 +17,6 @@ const style = {
     boxShadow: 24,
     p: 15,
   };
-
 // FlightCodesModal is a child of InputCity
 export default function FlightCodesModal(props) {
 
@@ -63,32 +62,21 @@ export default function FlightCodesModal(props) {
       </div>
     );
 
-
-
-
 //loop through the array of airport codes and display a button for each
-
-
 // useEffect(() => {
 //     //variable url
 // axios.get("http://localhost:3001/Toronto")
 // .then((res) => {
 //     console.log("test10", res)
 // })
-
 // },[])
 //     return <div>
 //         <p>Hello Toronto Data</p>
 //     </div>;
 }
-
-
-
 // To do:
-
 // 1. how to transition to a modal after you get the databack from axios request
 // 2. show a modal with a list of flight code from the json response (map through the array of objects)
 // 3. user clicks on the option and does a link react router? use useParams
 // 4. axios to hit data and display it
-
 

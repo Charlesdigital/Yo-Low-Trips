@@ -24,7 +24,7 @@ export default function Navbar({user, setUser}) {
           <Button className="nav-link" aria-current="page" component={Link} to="/" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
               Home
           </Button>
-          <Button className="nav-link" aria-current="page" component={Link} to="/flights" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
+          <Button className="nav-link" aria-current="page" component={Link} to="/flights/:id" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
               Flight Deals
           </Button>
           <Button className="nav-link" aria-current="page" component={Link} to="/favourites" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
@@ -32,11 +32,12 @@ export default function Navbar({user, setUser}) {
           </Button>
           {
             !user ?
-              <div className="d-flex">
-                <Button className="nav-link" aria-current="page" component={Link} to="/login" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
+              // <div className="d-flex">
+                <Button className="nav-link" aria-current="page" component={Link} to="/login" variant="outlined" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
                     Login
                 </Button>
-              </div> :
+              // </div> :
+              :
                 <Button onClick={handleLogout} className="nav-item ms-2" variant="outlined" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
                     Logout
                 </Button>

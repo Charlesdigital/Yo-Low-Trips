@@ -30,15 +30,34 @@ export default function Flights(props) {
       });
   }, []);
   console.log("STATE", state.flights);
+
+  const handleAdd = (flightObj) => {
+  //  console.log("THIS IS FLIGHT OBJECT+++++", flightObj)
+  //  const { destination } = flightObj; // destructure so it's easy to access
+  //  const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
+  //  const abc = new Date(departure_at).getTime(); 
+  // let flight_id = `${airline}-${abc}-${flight_number}` // set this as id for local database
+  // console.log(typeof flight_id)
+   let user = JSON.parse(localStorage.getItem("YoLowUser"));
+   const user_id = user.id;
+  //  console.log ("USER----------", user_id)
+   axios
+   .post(`http://localhost:3001/api/flights/${id}/user/favourites/`, { flightObj, user_id })
+   .then(response => {
+    //  console.log("THIS IS RES+++++++", response)
+   })
+  }
+
   return (
     <div>
       <Typography variant="h1"> Flight Deals for {id} </Typography>
 
       <Container >
         <Grid container spacing={4}>
-          {state.flights.map((flight) => (
 
-              <Grid item xs={12} sm={6} md={3}>
+          {state.flights.map((flight, index) => (
+          
+              <Grid item xs={12} sm={6} md={3} key={index}>
                 <Card>
                   <CardContent>
                     <Typography gutterBottom variant="h5">
@@ -54,7 +73,7 @@ export default function Flights(props) {
                     </Typography>
                   </CardContent>
                   <CardContent>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={() => handleAdd(flight)}>
                       Favourite
                     </Button>
                   </CardContent>

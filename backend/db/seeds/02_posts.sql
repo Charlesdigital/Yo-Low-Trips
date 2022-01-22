@@ -21,14 +21,14 @@ VALUES
 -- Vancouver to Delhi
     ('YVR', 'DEL', 125, 'BA', '888', '2022-01-31T22:55:00Z', '2022-02-13T10:04:00Z', '2022-01-27T20:30:00Z');
 
-INSERT INTO favourites(flight_id, user_id)
+INSERT INTO favourites(user_id, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at)
 VALUES
 -- Amanda Won's favourite flights
-    (1, 1), -- Toronto to Japan
-    (2, 1), -- Toronto to Paris
-    (5, 1), -- Toronto to Honolulu
+    (1, 'YYZ', 'TYO', 200, 'OZ', '111', '2022-01-31T08:20:00Z', '2022-02-12T10:00:00Z', '2022-01-28T13:30:00Z'), -- Toronto to Japan
+    (1, 'YYZ', 'PAR', 175, 'AC', '222', '2022-01-30T00:20:00Z', '2022-02-07T13:45:00Z', '2022-01-29T16:00:00Z'), -- Toronto to Paris
+    (1, 'YYZ', 'HNL', 150, 'AC', '555', '2022-02-02T19:00:00Z', '2022-02-14T16:01:00Z', '2022-01-30T00:00:00Z'), -- Toronto to Honolulu
 -- KC Trey's favourite flights
-    (8, 3); -- Vancover to Las Vegas
+    (3, 'YVR', 'LAS', 75, 'AC', '777', '2022-01-29T11:30:00Z', '2022-02-05T18:11:00Z', '2022-01-28T02:00:00Z'); -- Vancover to Las Vegas
 
 
 INSERT INTO activities(favourite_id, name, start_at, end_at)
