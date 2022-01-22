@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useHistory, useParams } from 'react-router-dom';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -14,10 +15,11 @@ const style = {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 15,
   };
 // FlightCodesModal is a child of InputCity
 export default function FlightCodesModal(props) {
+
     let history = useHistory()
     const handleOpen = () => props.setOpen(true);
     const handleClose = () => props.setOpen(false);
@@ -42,6 +44,7 @@ export default function FlightCodesModal(props) {
                   onClick={() => {
                     history.push(`/flights/${airports.airport_code}`)
                   }}>
+
                     {airports.airport_code}
                   </Button>
                   </div>
@@ -58,6 +61,7 @@ export default function FlightCodesModal(props) {
         </Modal>
       </div>
     );
+
 //loop through the array of airport codes and display a button for each
 // useEffect(() => {
 //     //variable url

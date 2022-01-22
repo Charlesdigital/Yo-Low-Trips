@@ -29,7 +29,7 @@ function App() {
  // tiny app ex.
 
  // filters are button siblings to the filter components
- 
+
   return (
     <Router>
       <div className="App">

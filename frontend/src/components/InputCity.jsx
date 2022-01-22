@@ -1,6 +1,17 @@
 import axios from "axios";
 import React, { useState } from "react";
 import FlightCodesModal from "./FlightCodesModal";
+import Input from '@mui/material/Input';
+import Button from '@mui/material/Button';
+
+
+const border = {
+  border: '2px solid #000',
+};
+
+const button = {
+  bgcolor: 'text.secondary'
+}
 
 function requestAirportCode(city) {
   console.log("test3", city)
@@ -32,7 +43,7 @@ export default function InputCity(props) {
       if(response.data) {
         setflightCodeData(response.data);
         setOpen(true);
-        console.log("test13", setflightCodeData)
+        console.log("test13", flightCodeData)
         console.log("test14", response.data)
       }
       console.log("test12", response.data)
@@ -47,16 +58,16 @@ export default function InputCity(props) {
     <main>
       <h1> Yo-Low-Trips </h1>
       <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
-        <input
+        <Input sx={border}
           type="text"
           placeholder="Enter a city"
           onChange={(event)=> {
             setCity(event.target.value);
           }}
         />
-        <button onClick={() => validate(city)}>
+        <Button sx={border} onClick={() => validate(city)}>
             Search
-          </button>
+          </Button>
       </form>
       <FlightCodesModal
       open={open}

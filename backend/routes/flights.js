@@ -5,6 +5,19 @@ const fetch = require("node-fetch");
 
 module.exports = () => {
   router.get("/:id", (req, result) => {
+
+    console.log("test15", req.params)
+    // helpers.getUsers(2).then((result) => {
+    //   const users = result[0];
+    //   console.log(users);
+    //   //important for CORS error
+    //   res.header("Access-Control-Allow-Origin", "*");
+    //   //res.status(200).json({ users })
+    //   res.send({ users });
+    //   // res.json("db result", { users });
+    // });
+
+
     
     const params = {
       origin: req.params.id,
@@ -50,7 +63,7 @@ module.exports = () => {
               flightData: flightData[item],
             });
           }
-          
+
         });
         console.log("RES", flightArray);
         result.json(flightArray);

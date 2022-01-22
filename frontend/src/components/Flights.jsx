@@ -50,10 +50,11 @@ export default function Flights(props) {
 
   return (
     <div>
-      <Typography variant="h1"> Hello </Typography>
+      <Typography variant="h1"> Flight Deals for {id} </Typography>
 
       <Container >
         <Grid container spacing={4}>
+
           {state.flights.map((flight, index) => (
           
               <Grid item xs={12} sm={6} md={3} key={index}>
@@ -78,7 +79,7 @@ export default function Flights(props) {
                   </CardContent>
                 </Card>
               </Grid>
-        
+
           ))}
         </Grid>
       </Container>
