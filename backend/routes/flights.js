@@ -18,7 +18,7 @@ module.exports = () => {
     // });
 
 
-    
+
     const params = {
       origin: req.params.id,
       page: "None", // default it shows 100 object
@@ -53,10 +53,29 @@ module.exports = () => {
       })
       .then((res) => {
         const data = res.data;
-        const flightArray = [];
-        Object.keys(data).forEach((key) => {
-          const flightData = data[key];
+        // console.log("test16, abc------------------------",data)
+        let flightDataObject = {}
+        for(const key in data) {
+          // let flightCode = key
+          // console.log("test 17-----------", key)
+          // console.log("test 18?-----------returns multiple flight for key", data[key])
+          for (const obj in data[key]) {
+            // console.log("test 21-----------", key)
+            // console.log("test 19-----------", data[key][obj])
+            // const flightObjectData = {flightCode: data[key][obj]}
+            // flightDataArray.push({[key]:data[key][obj]})
+            // only showing first value of each flight code
+            flightDataObject = {...flightDataObject, [key]:data[key][obj]}
+            //  console.log("test 20-----------only showing first value of each flight code", flightDataObject)
 
+          }
+        }
+        // console.log("test 22-----------", flightDataObject)
+
+        const flightArray = [];
+        Object.keys(flightDataObject).forEach((key) => {
+          const flightData = flightDataObject[key];
+          console.log("test 23-----------", flightData)
           for (let item in flightData) {
             flightArray.push({
               destination: key,
@@ -65,7 +84,9 @@ module.exports = () => {
           }
 
         });
-        console.log("RES", flightArray);
+        // console.log("RES", flightArray);
+        console.log("test 24-----------", flightDataObject)
+
         result.json(flightArray);
       });
 
