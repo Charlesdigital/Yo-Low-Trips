@@ -18,7 +18,7 @@ CREATE TABLE flights (
 );
 
 CREATE TABLE favourites (
-    id SERIAL PRIMARY KEY NOT NULL,
+    favId SERIAL PRIMARY KEY NOT NULL,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     origin VARCHAR(3) NOT NULL,
     destination VARCHAR(3) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE favourites (
 
 CREATE TABLE activities (
     id SERIAL PRIMARY KEY NOT NULL,
-    favourite_id INTEGER REFERENCES favourites(id) ON DELETE CASCADE,
+    favourite_id INTEGER REFERENCES favourites(favId) ON DELETE CASCADE,
     name VARCHAR(250),
     start_at TIMESTAMP,
     end_at TIMESTAMP

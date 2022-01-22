@@ -24,20 +24,20 @@ module.exports = (db) => {
         .catch((err) => err);
     };
 
-    // Add user to database
-    const addUser = (firstName, lastName, email, password) => {
-        const query = {
-            text: `
-                INSERT INTO users (first_name, last_name, email, password)
-                VALUES ($1, $2, $3, $4) RETURNING *;` ,
-            values: [firstName, lastName, email, password]
-        };
+    // // Add user to database
+    // const addUser = (firstName, lastName, email, password) => {
+    //     const query = {
+    //         text: `
+    //             INSERT INTO users (first_name, last_name, email, password)
+    //             VALUES ($1, $2, $3, $4) RETURNING *;` ,
+    //         values: [firstName, lastName, email, password]
+    //     };
 
-        return db
-        .query(query, [firstName, lastName, email, password])
-        .then((result) => result.rows[0]) // return first obj
-        .catch((err) => err);
-    };
+    //     return db
+    //     .query(query, [firstName, lastName, email, password])
+    //     .then((result) => result.rows[0]) // return first obj
+    //     .catch((err) => err);
+    // };
 
     // Get all favourites from a single user given their id
     const getAllFavouritesForUser = (userId) => {
@@ -56,20 +56,22 @@ module.exports = (db) => {
     };
 
     // Add a single flight to favourites database for a user given their id
-    const addToFavourite = (id, userId, flightObj) => {
+    const addToFavourite = (favId, userId, flightObj, origin) => {
         const { destination } = flightObj; // destructure so it's easy to access
         const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData;
 
         const query = {
             text:`
-                INSERT INTO favourites (user_id, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+                INSERT INTO favourites (favId, user_id, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
                 RETURNING *;`,
-            Value: [userId, id, destination, price, airline, flight_number, departure_at, return_at, expires_at]
+            Value: [favId, userId, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at]
         };
 
+        console.log(`THIS IS ID: ${favId} && THIS IS USER ID: ${userId}`);
+
         return db
-            .query(query, [userId, id, destination, price, airline, flight_number, departure_at, return_at, expires_at])
+            .query(query, [favId, userId, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at])
             .then(result => result.rows[0])
             .catch(err => err);
     };
@@ -79,7 +81,7 @@ module.exports = (db) => {
         const query = {
             text: `
                 DELETE FROM favourites
-                WHERE favourites.id = $1`,
+                WHERE favourites.favId = $1`,
             Value: [favId]
         };
 
@@ -137,7 +139,7 @@ module.exports = (db) => {
     return {
         getUsers,
         getUserByEmail,
-        addUser,
+        // addUser,
         getAllFavouritesForUser,
         // addFavourite,
         addToFavourite,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 
 export default function Favourites(props) {
@@ -32,8 +32,11 @@ export default function Favourites(props) {
       <p>Hello</p>
 
       <ul>
+        {/* {console.log("THIS IS FAV STATE: ", state.favourites)} */}
         {state.favourites.map((fav) => (
-          <li key={fav.id}>
+          // <Fragment>
+          // {console.log("FAVE", fav.favid)}
+          <li key={fav.favid}>
             Origin: {fav.origin},
             Destination: {fav.destination},
             Departure Date: {fav.departure_at},
@@ -42,8 +45,10 @@ export default function Favourites(props) {
             Promo Expiration: {fav.expires_at}
             <button type="submit">Remove</button>
           </li>
+          // </Fragment>
         ))}
       </ul>
     </div>
   );
+
 }

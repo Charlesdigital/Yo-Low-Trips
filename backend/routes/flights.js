@@ -80,9 +80,10 @@ module.exports = () => {
     const { destination } = flightObj; // destructure so it's easy to access
     const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
     // console.log(`THIS IS PRICE: ${price} && THIS IS DESTINATION ${destination}`)
-    helpers.addToFavourite(id, user_id, flightObj)
+    const fav_id = 123;
+    helpers.addToFavourite(fav_id, user_id, flightObj, id)
       .then((response) => {
-        // console.log("THIS RESPONSE", response)
+        console.log("THIS IS BKEND RESPONSE", response)
         const favFlight = response;
         res.send(favFlight);
       })

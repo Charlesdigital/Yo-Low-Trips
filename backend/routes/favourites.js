@@ -30,11 +30,18 @@ module.exports = () => {
       });
   });
   
-  // // POST to remove favourite flight in table
-  // router.post("/delete/:fav_id", (req, res) => {
-  //   const favItem = req.params.favourite_id;
-  //   const user_id = req.params.user_id;
-  //   helpers.removeFavourite(favItem)
-  // })
+  // POST to remove favourite flight in table
+  router.post("/delete/:fav_id", (req, res) => {
+    const favItem = req.params.favourites.favId;
+    helpers.removeFavourite(favItem)
+      .then(remove => {
+        res.send(remove);
+      })
+      .catch(err => {
+        res.status(400).send("FAVOURITE ITEM FAILED TO REMOVE");
+      })
+
+  })
+  
   return router;
 }

@@ -44,7 +44,7 @@ export default function Flights(props) {
    axios
    .post(`http://localhost:3001/api/flights/${id}/user/favourites/`, { flightObj, user_id })
    .then(response => {
-    //  console.log("THIS IS RES+++++++", response)
+     console.log("THIS IS RES+++++++", response)
    })
   }
 
