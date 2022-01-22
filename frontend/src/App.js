@@ -12,6 +12,7 @@ import Flights from "./components/Flights";
 import Favourites from "./components/Favourites";
 import Login from "./components/Login";
 import FlightCodesModal from "./components/FlightCodesModal";
+import PriceFilter from "./components/PriceFilter";
 
 // import AllFlights from "components/allflights"
 function App() {
@@ -31,6 +32,8 @@ function App() {
  // filters are button siblings to the filter components
 
   return (
+
+    
     <Router>
       <div className="App">
         <Navbar user={user} setUser={setUser} />
