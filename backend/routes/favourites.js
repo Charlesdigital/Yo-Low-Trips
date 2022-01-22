@@ -5,16 +5,15 @@ const helpers = require("../helpers/dbHelpers")(db);
 module.exports = () => {
   router.get("/favourites/:user_id", (req, res) => {
     const user_id = req.params.user_id;
+    // console.log("THIS IS USER!!!!!", user_id)
     helpers.getAllFavouritesForUser(user_id)
       .then((result) => {
-      console.log("RESULT+++++++++++", result)
+      // console.log("RESULT+++++++++++", result)
       const favData = result;
      
       //important for CORS error
       res.header("Access-Control-Allow-Origin", "*");
-      //res.status(200).json({ users })
       res.send(favData);
-      // res.json("db result", { users });
     });
   });
 
