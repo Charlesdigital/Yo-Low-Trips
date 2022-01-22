@@ -35,7 +35,7 @@ export default function Login({ setUser }) {
     evt.preventDefault();
     login({ email, password });
     // setUser(user);
-    history.push("/flights"); // redirects to flights screen after successful login
+    history.push('/'); // redirects to flights screen after successful login
   }
 
   return (
