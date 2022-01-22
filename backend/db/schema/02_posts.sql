@@ -20,7 +20,14 @@ CREATE TABLE flights (
 CREATE TABLE favourites (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    flight_id INTEGER REFERENCES flights(id) ON DELETE CASCADE
+    origin VARCHAR(3) NOT NULL,
+    destination VARCHAR(3) NOT NULL,
+    price INTEGER NOT NULL,
+    airline VARCHAR(2) NOT NULL,
+    flight_number VARCHAR(4) NOT NULL,
+    departure_at TIMESTAMP,
+    return_at TIMESTAMP,
+    expires_at TIMESTAMP
 );
 
 CREATE TABLE activities (

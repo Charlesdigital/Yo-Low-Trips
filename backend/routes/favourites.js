@@ -1,40 +1,26 @@
-const { render } = require("../app");
 const db = require("../db")
 const router = require("express").Router();
 const helpers = require("../helpers/dbHelpers")(db);
 
 module.exports = () => {
-  router.get("/favourites", (req, res) => {
-    helpers.getAllFavouritesForUser(1).then((result) => {
-      console.log("RESULT", result)
-      const favData = result;
-     
-      //important for CORS error
-      res.header("Access-Control-Allow-Origin", "*");
-      //res.status(200).json({ users })
-      res.send( favData );
-      // res.json("db result", { users });
-    });
-  });
-
   router.get("/favourites/:user_id", (req, res) => {
     const user_id = req.params.user_id;
-    helpers.getAllFavouritesForUser(user_id).then((result) => {
-      console.log("RESULT", result)
+    // console.log("THIS IS USER!!!!!", user_id)
+    helpers.getAllFavouritesForUser(user_id)
+      .then((result) => {
+      // console.log("RESULT+++++++++++", result)
       const favData = result;
      
       //important for CORS error
       res.header("Access-Control-Allow-Origin", "*");
-      //res.status(200).json({ users })
-      res.send( favData );
-      // res.json("db result", { users });
+      res.send(favData);
     });
   });
 
   // POST to update Favourites Table
   router.post("/favourites", (req, res) => {
-    const userId = req.session.userId;
-    helpers.addFavourite({...req.body, user_id: userId})
+    const user_id = req.params.user_id;
+    helpers.addFavourite({...req.body, user_id: user_id})
       .then(favourite => {
         res.send(favourite);
       })
@@ -44,5 +30,11 @@ module.exports = () => {
       });
   });
   
+  // // POST to remove favourite flight in table
+  // router.post("/delete/:fav_id", (req, res) => {
+  //   const favItem = req.params.favourite_id;
+  //   const user_id = req.params.user_id;
+  //   helpers.removeFavourite(favItem)
+  // })
   return router;
 }
