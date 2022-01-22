@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { useHistory, useParams } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -14,15 +15,16 @@ const style = {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 15,
   };
 
 // FlightCodesModal is a child of InputCity
 export default function FlightCodesModal(props) {
 
+    let history = useHistory()
     const handleOpen = () => props.setOpen(true);
     const handleClose = () => props.setOpen(false);
-
+    // const {id} = useParams()
     return (
       <div>
         <Modal
@@ -32,12 +34,24 @@ export default function FlightCodesModal(props) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-              <pre>
+              {/* <pre>
               {JSON.stringify(props.flightCodeData, null, 4)}
-              </pre>
+              </pre> */}
+                {props.flightCodeData.map((airports, index) => {
+                  return <div key={index}>
+                  <p>{airports.airport_name} </p>
+                  <Button
+                  variant="contained"
+                  onClick={() => {
+                    history.push(`/flights/${airports.airport_code}`)
+                  }}>
 
-              <Button variant="contained">test 2 </Button>
-              <Button variant="contained">test 3</Button>
+                    {airports.airport_code}
+                  </Button>
+                  </div>
+                })}
+              {/* <Button variant="contained">test 2 </Button>
+              <Button variant="contained">test 3</Button> */}
             {/* <Typography id="modal-modal-title" variant="h6" component="h2">
               Text in a modal
             </Typography>
@@ -48,6 +62,9 @@ export default function FlightCodesModal(props) {
         </Modal>
       </div>
     );
+
+
+
 
 //loop through the array of airport codes and display a button for each
 

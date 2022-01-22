@@ -10,13 +10,16 @@ import {
   Container,
   Grid,
 } from "@mui/material";
+import { useParams } from 'react-router-dom';
+
 export default function Flights(props) {
+  let {id} = useParams()
   const [state, setState] = useState({
     flights: [],
   });
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/flights")
+      .get(`http://localhost:3000/api/flights/${id}`)
       .then((res) => {
         console.log("axios req data", res.data);
         const flightsData = res.data;
@@ -29,12 +32,12 @@ export default function Flights(props) {
   console.log("STATE", state.flights);
   return (
     <div>
-      <Typography variant="h1"> Hello </Typography>
+      <Typography variant="h1"> Flight Deals for {id} </Typography>
 
       <Container >
         <Grid container spacing={4}>
           {state.flights.map((flight) => (
-          
+
               <Grid item xs={12} sm={6} md={3}>
                 <Card>
                   <CardContent>
@@ -57,7 +60,7 @@ export default function Flights(props) {
                   </CardContent>
                 </Card>
               </Grid>
-        
+
           ))}
         </Grid>
       </Container>

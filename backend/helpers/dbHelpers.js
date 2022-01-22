@@ -23,7 +23,7 @@ module.exports = (db) => {
         .then((result) => result.rows[0])
         .catch((err) => err);
     };
-  
+
     // Add user to database
     const addUser = (firstName, lastName, email, password) => {
         const query = {
@@ -68,7 +68,7 @@ module.exports = (db) => {
           .then((result) => result.rows)
           .catch((err) => err);
     };
-    
+
     const getFlights = () => {
         const query = {
             text: `SELECT *
@@ -99,13 +99,13 @@ module.exports = (db) => {
             })
             .catch(err => err);
     };
-    
+
     return {
         getUsers,
         getUserByEmail,
         addUser,
         getAllFavouritesForUser,
-        addFavourite,
+        // addFavourite,
         getCityForOrigin,
         getFlights,
         getAirportCodes

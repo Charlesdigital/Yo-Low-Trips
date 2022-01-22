@@ -6,7 +6,10 @@ const fetch = require("node-fetch");
 //const request = require('request');
 
 module.exports = () => {
-  router.get("/", (req, result) => {
+  router.get("/:id", (req, result) => {
+
+
+    console.log("test15", req.params)
     // helpers.getUsers(2).then((result) => {
     //   const users = result[0];
     //   console.log(users);
@@ -18,7 +21,7 @@ module.exports = () => {
     // });
 
     const params = {
-      origin: "HKT",
+      origin: req.params.id,
       page: "None",
       currency: "CAD",
       destination: "-",
@@ -79,7 +82,7 @@ module.exports = () => {
               flightData: flightData[item],
             });
           }
-          
+
         });
         console.log("RES", flightArray);
         result.json(flightArray);

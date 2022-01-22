@@ -92,7 +92,7 @@ function App() {
  // tiny app ex.
 
  // filters are button siblings to the filter components
- 
+
   return (
     <Router>
       <div className="App">
@@ -107,7 +107,7 @@ function App() {
             <Route exact path="/login">
               <Login setUser={setUser}/>
             </Route>
-            <Route exact path="/flights">
+            <Route exact path="/flights/:id">
               <Flights />
             </Route>
             <Route exact path="/favourites">
