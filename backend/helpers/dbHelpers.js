@@ -68,7 +68,7 @@ module.exports = (db) => {
             Value: [favId, userId, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at]
         };
 
-        console.log(`THIS IS ID: ${favId} && THIS IS USER ID: ${userId}`);
+        // console.log(`THIS IS ID: ${favId} && THIS IS USER ID: ${userId}`);
 
         return db
             .query(query, [favId, userId, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at])
@@ -141,10 +141,8 @@ module.exports = (db) => {
         getUserByEmail,
         // addUser,
         getAllFavouritesForUser,
-        // addFavourite,
         addToFavourite,
         removeFavourite,
-
         getCityForOrigin,
         getFlights,
         getAirportCodes
