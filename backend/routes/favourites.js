@@ -32,7 +32,9 @@ module.exports = () => {
   
   // POST to remove favourite flight in table
   router.post("/delete/:fav_id", (req, res) => {
-    const favItem = req.params.favourites.favId;
+    // console.log("THIS IS A REQUEST: ", req.params);
+    const favItem = req.params.fav_id;
+    // console.log("THIS IS FAV ID:", favItem)
     helpers.removeFavourite(favItem)
       .then(remove => {
         res.send(remove);
