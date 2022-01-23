@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
 function valuetext(value) {
-  return `${value}°C`;
+  return `$${value}`;
 }
 
 export default function RangeSlider(props) {
@@ -21,7 +21,7 @@ const {minMaxValue, setminMaxValue} = props
         value={minMaxValue}
         onChange={handleChange}
         min={0}
-        max={500}
+        max={2000}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
       />

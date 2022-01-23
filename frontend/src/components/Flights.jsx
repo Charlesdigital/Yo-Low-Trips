@@ -15,7 +15,7 @@ import PriceFilter from "./PriceFilter"
 
 export default function Flights(props) {
   let {id} = useParams()
-  const [minMaxValue, setminMaxValue] = React.useState([200, 500]);
+  const [minMaxValue, setminMaxValue] = React.useState([0, 2000]);
 
   const [state, setState] = useState({
     flights: [],
@@ -88,8 +88,6 @@ export default function Flights(props) {
                 </Card>
               </Grid>)
             }
-
-
 })}
         </Grid>
       </Container>
