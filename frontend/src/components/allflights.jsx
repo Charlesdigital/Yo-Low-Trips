@@ -36,10 +36,10 @@ const flightData = {
   },
 };
 
-export default function AllFlights(props) {
+// export default function AllFlights(props) {
    
-  return (
+//   return (
     
-  );
-}
+//   );
+// }
 

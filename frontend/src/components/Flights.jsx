@@ -13,16 +13,19 @@ import {
 import { useParams } from "react-router-dom";
 import PriceFilter from "./PriceFilter";
 import DestinationFilter from "./DestinationFilter";
+import DatesFilter from "./DatesFilter";
 
 export default function Flights(props) {
   let { id } = useParams();
-  const [minMaxValue, setminMaxValue] = React.useState([200, 500]);
+  const [minMaxValue, setminMaxValue] = React.useState([0, 500]);
 
   const [flights, setFlights] = useState([]);
 
   const [filterFlights, setFilterFlights] = useState([]);
 
   const [selectedDestination, setSelectedDestination] = useState(null);
+
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     axios
@@ -40,7 +43,7 @@ export default function Flights(props) {
   useEffect(() => {
     setFilterFlights(
       flights.filter((flight) => {
-        console.log("selecteddestination", selectedDestination, flight.destination)
+        //console.log("selecteddestination", selectedDestination, flight.destination)
         return (
           (flight.flightData.price > minMaxValue[0] &&
           flight.flightData.price < minMaxValue[1]) && (selectedDestination === null || flight.destination === selectedDestination)
@@ -75,6 +78,9 @@ export default function Flights(props) {
     <div>
       <PriceFilter minMaxValue={minMaxValue} setminMaxValue={setminMaxValue} />
       <DestinationFilter setDestination={setSelectedDestination} flightData={filterFlights} />
+
+      <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
+
       <Typography variant="h1"> Flight Deals for {id} </Typography>
 
       <Container>
