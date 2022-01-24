@@ -21,9 +21,22 @@ export default function Flights(props) {
   const { appFlightCode } = props;
   appFlightCode(id);
 
+  const priceReset = () => {
+    setminMaxValue([0, 1000]);
+    console.log("resetted price");
+  };
+  const destinationReset = () => {
+    setSelectedDestination(null);
+    console.log("resetted destination");
+  };
+  const dateReset = () => {
+    setSelectedDate(null);
+    console.log("resetted date");
+  };
+
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
-  const [minMaxValue, setminMaxValue] = React.useState([0, 500]);
+  const [minMaxValue, setminMaxValue] = React.useState([0, 1000]);
 
   const [flights, setFlights] = useState([]);
 
@@ -53,7 +66,11 @@ export default function Flights(props) {
   useEffect(() => {
     setFilterFlights(
       flights.filter((flight) => {
-        console.log("selectedDate", selectedDate, flight.flightData.departure_at)
+        // console.log(
+        //   "selectedDate",
+        //   selectedDate,
+        //   flight.flightData.departure_at
+        // );
         return (
           flight.flightData.price > minMaxValue[0] &&
           flight.flightData.price < minMaxValue[1] &&
@@ -103,15 +120,27 @@ export default function Flights(props) {
   return (
     <div>
       <PriceFilter minMaxValue={minMaxValue} setminMaxValue={setminMaxValue} />
+      <Button size="small" color="primary" onClick={() => priceReset()}>
+       
+        Reset Price
+      </Button>
 
       <DestinationFilter
+        selectedDestination={selectedDestination}
         setDestination={setSelectedDestination}
         flightData={filterFlights}
       />
-
+      <Button size="small" color="primary" onClick={() => destinationReset()}>
+     
+        Reset Destination
+      </Button>
       <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
+      <Button size="small" color="primary" onClick={() => dateReset()}>
+    
+        Reset Date
+      </Button>
 
-      <Typography variant="h1"> Flight Deals for {id} </Typography>
+      <Typography variant="h1"> Flight Deals for {id.toUpperCase()} </Typography>
 
       <Container>
         <Grid container spacing={4}>
@@ -127,7 +156,7 @@ export default function Flights(props) {
                       Price: {flight.flightData.price} <br></br>
                       {/* Destination:{flight.destination}, */}
                       Airline: {flight.flightData.airline} <br></br>
-                      flight Number: {flight.flightData.flight_number} <br></br>
+                      Flight Number: {flight.flightData.flight_number} <br></br>
                       Departure At: {flight.flightData.departure_at} <br></br>
                       Return At: {flight.flightData.return_at} <br></br>
                       Expires at: {flight.flightData.expires_at} <br></br>

@@ -12,24 +12,25 @@ export default function DatesFilter(props) {
     <Autocomplete
       onChange={(event, newValue) => {
         // console.log("NEWVALUE", newValue.flightData.departure_at)
-        props.setDate(newValue.flightData.departure_at);
+        props.setDate(newValue);
       }}
       onInputChange={(event, newInputValue) => {
         // console.log("NEWINPUTVALUE", newInputValue)
         props.setDate(newInputValue ? newInputValue : null);
       }}
       sx={{ width: 300 }}
-      options={props.flightData}
+      value={props.selectedDate}
+      options={props.flightData.map(flight => flight.flightData.departure_at)}
       autoHighlight
       getOptionLabel={(option) => 
-      option.flightData.departure_at}
+      option}
       renderOption={(props, option) => (
         <Box
           component="li"
           sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
           {...props}
         >
-          {option.flightData.departure_at}
+          {option}
         </Box>
       )}
       renderInput={(params) => (
