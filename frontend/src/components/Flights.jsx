@@ -14,7 +14,15 @@ import { useParams } from 'react-router-dom';
 import PriceFilter from "./PriceFilter"
 
 export default function Flights(props) {
+
   let {id} = useParams()
+
+  const {appFlightCode} = props;
+  appFlightCode(id)
+
+  // console.log("THIS IS USE PARAMS: ", useParams())
+  // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
+  
   const [minMaxValue, setminMaxValue] = React.useState([200, 500]);
 
   const [state, setState] = useState({
