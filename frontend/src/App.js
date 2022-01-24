@@ -9,14 +9,14 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import SearchBar from "./components/SearchBar";
+// import SearchBar from "./components/SearchBar";
 import Navbar from "./components/Navbar";
 import InputCity from "./components/InputCity";
 import Flights from "./components/Flights";
 import Favourites from "./components/Favourites";
 import Login from "./components/Login";
-import FlightCodesModal from "./components/FlightCodesModal";
-import PriceFilter from "./components/PriceFilter";
+// import FlightCodesModal from "./components/FlightCodesModal";
+// import PriceFilter from "./components/PriceFilter";
 
 // import AllFlights from "components/allflights"
 function App() {
