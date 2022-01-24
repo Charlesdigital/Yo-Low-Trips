@@ -51,7 +51,7 @@ export default function InputCity(props) {
   }
 //set modal to open, pass it true);
 
-{console.log("test12???", setflightCodeData)}
+{console.log("test12???", flightCodeData)}
 
 // need to change main
   return (

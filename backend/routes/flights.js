@@ -2,6 +2,7 @@ const db = require("../db");
 const router = require("express").Router();
 const helpers = require("../helpers/dbHelpers")(db);
 const fetch = require("node-fetch");
+const { DatabaseError } = require("pg");
 
 module.exports = () => {
   router.get("/:id", (req, result) => {
@@ -18,7 +19,7 @@ module.exports = () => {
     // });
 
 
-    
+
     const params = {
       origin: req.params.id,
       page: "None", // default it shows 100 object
@@ -51,20 +52,27 @@ module.exports = () => {
       .then((res) => {
         return res.json();
       })
-      .then((res) => {
+      .then(async (res) => {
         const data = res.data;
-        const flightArray = [];
-        Object.keys(data).forEach((key) => {
+
+        // const flightArray = [];
+        const flightArrayPromises = Object.keys(data).map(async (key) => {
           const flightData = data[key];
 
           for (let item in flightData) {
-            flightArray.push({
-              destination: key,
-              flightData: flightData[item],
-            });
+            const flightNumber = await helpers.getFlightNumber(flightData[item].flight_number)
+            console.log("test27", flightNumber)
+
+            return ({
+                destination: key,
+                flightData: flightData[item],
+                favourited: flightNumber[0] ? true: false
+              });
           }
 
         });
+        const flightArray = await Promise.all(flightArrayPromises)
+
         console.log("RES", flightArray);
         result.json(flightArray);
       });

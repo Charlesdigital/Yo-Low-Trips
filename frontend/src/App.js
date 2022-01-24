@@ -33,7 +33,7 @@ function App() {
 
   return (
 
-    
+
     <Router>
       <div className="App">
         <Navbar user={user} setUser={setUser} />

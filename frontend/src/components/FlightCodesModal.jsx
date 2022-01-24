@@ -23,6 +23,8 @@ export default function FlightCodesModal(props) {
     let history = useHistory()
     const handleOpen = () => props.setOpen(true);
     const handleClose = () => props.setOpen(false);
+    // const [codeSelected, codeSelected] = useState();// setcode to the top level, to use it as params
+
     // const {id} = useParams()
     return (
       <div>
