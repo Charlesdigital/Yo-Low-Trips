@@ -136,6 +136,20 @@ module.exports = (db) => {
             .catch(err => err);
     };
 
+    const getFlightNumber = (flightNumber) => {
+        const query = {
+            text: ` SELECT * FROM favourites
+                    WHERE flight_number = $1`,
+                    Value: [flightNumber]
+        }
+
+        return db.query(query, [flightNumber])
+            .then(result => {
+                console.log("test26", result)
+                return result.rows
+             })
+            .catch(err => err);
+}
     return {
         getUsers,
         getUserByEmail,
@@ -145,8 +159,9 @@ module.exports = (db) => {
         removeFavourite,
         getCityForOrigin,
         getFlights,
-        getAirportCodes
+        getAirportCodes,
+        getFlightNumber
     };
 };
-    
-    
+
+
