@@ -9,9 +9,9 @@ const border = {
   border: '2px solid #000',
 };
 
-const button = {
-  bgcolor: 'text.secondary'
-}
+// const button = {
+//   bgcolor: 'text.secondary'
+// }
 
 function requestAirportCode(city) {
   console.log("test3", city)
@@ -27,31 +27,28 @@ function requestAirportCode(city) {
 export default function InputCity(props) {
 
   const [city, setCity] = useState("");
-  const [error, setError] = useState();
+  // const [error, setError] = useState();
   const [open,setOpen] = useState(false);
   const [flightCodeData, setflightCodeData] = useState([]);
 
   console.log("test 15", flightCodeData)
    //pass as a prop to your custom modal
   function validate() {
-    if(city === "") {
-    setError("City name cannot be blank");
-      return;
-    }
-    setError("");
+    // if(city === "") {
+    // setError("City name cannot be blank");
+    //   return;
+    // }
+    // setError("");
     requestAirportCode(city).then((response) => {
       if(response.data) {
         setflightCodeData(response.data);
         setOpen(true);
-        console.log("test13", flightCodeData)
-        console.log("test14", response.data)
       }
-      console.log("test12", response.data)
     })
   }
 //set modal to open, pass it true);
 
-{console.log("test12???", flightCodeData)}
+// {console.log("test12???", setflightCodeData)}
 
 // need to change main
   return (
@@ -73,12 +70,13 @@ export default function InputCity(props) {
       open={open}
       setOpen={setOpen}
       flightCodeData={flightCodeData}
+      code = {props.code}
+      setCode = {props.setCode}
       />
     </main>
   );
 }
 
-{/* create a post on submit and then display codes */}
 
 
 //1. create a form and on submit call a function

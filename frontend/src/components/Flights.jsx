@@ -17,6 +17,12 @@ import DatesFilter from "./DatesFilter";
 
 export default function Flights(props) {
   let { id } = useParams();
+
+  const { appFlightCode } = props;
+  appFlightCode(id);
+
+  // console.log("THIS IS USE PARAMS: ", useParams())
+  // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
   const [minMaxValue, setminMaxValue] = React.useState([0, 500]);
 
   const [flights, setFlights] = useState([]);
@@ -26,6 +32,10 @@ export default function Flights(props) {
   const [selectedDestination, setSelectedDestination] = useState(null);
 
   const [selectedDate, setSelectedDate] = useState(null);
+
+  const [state, setState] = useState({
+    flights: [],
+  });
 
   useEffect(() => {
     axios
@@ -43,26 +53,29 @@ export default function Flights(props) {
   useEffect(() => {
     setFilterFlights(
       flights.filter((flight) => {
-        //console.log("selecteddestination", selectedDestination, flight.destination)
+        console.log("selectedDate", selectedDate, flight.flightData.departure_at)
         return (
           flight.flightData.price > minMaxValue[0] &&
           flight.flightData.price < minMaxValue[1] &&
           (selectedDestination === null ||
-            flight.destination === selectedDestination)
+            flight.destination === selectedDestination) &&
+          (selectedDate === null ||
+            flight.flightData.departure_at === selectedDate)
         );
       })
     );
-  }, [minMaxValue, flights, selectedDestination]);
-  //console.log("STATE", state.flights);
+  }, [minMaxValue, flights, selectedDestination, selectedDate]);
 
-  const handleAdd = (flightObj) => {
-    console.log("FLIGHTOBJ", flightObj)
-    //  console.log("THIS IS FLIGHT OBJECT+++++", flightObj)
+  console.log("this is flight", flights);
+
+  const handleAdd = (flightObj, index) => {
+    console.log("THIS IS FLIGHT OBJECT+++++", flightObj);
     //  const { destination } = flightObj; // destructure so it's easy to access
     //  const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
     //  const abc = new Date(departure_at).getTime();
     // let flight_id = `${airline}-${abc}-${flight_number}` // set this as id for local database
     // console.log(typeof flight_id)
+
     let user = JSON.parse(localStorage.getItem("YoLowUser"));
     const user_id = user.id;
     //  console.log ("USER----------", user_id)
@@ -72,10 +85,20 @@ export default function Flights(props) {
         user_id,
       })
       .then((response) => {
+        const flightsData = {
+          favourited: true,
+          destination: flightObj.destination,
+          flightData: { ...response.data },
+        };
+        console.log("THIS IS RESDATA+++++++", flightsData);
+
+        const newFlights = [...state.flights];
+        newFlights[index] = flightsData;
         console.log("THIS IS RES+++++++", response);
+        setState(() => ({ flights: newFlights }));
       });
   };
-  // console.log("test 25", minMaxValue)
+  console.log("test 25", minMaxValue);
 
   return (
     <div>
@@ -101,12 +124,14 @@ export default function Flights(props) {
                       {flight.destination}
                     </Typography>
                     <Typography>
-                      Price: {flight.flightData.price}, Destination:
-                      {flight.flightData.destination}, Expires at:{" "}
-                      {flight.flightData.expires_at}, Airline:{" "}
-                      {flight.flightData.airline}, Departure At:{" "}
-                      {flight.flightData.departure_at}, Return At:{" "}
-                      {flight.flightData.return_at}
+                      Price: {flight.flightData.price} <br></br>
+                      {/* Destination:{flight.destination}, */}
+                      Airline: {flight.flightData.airline} <br></br>
+                      flight Number: {flight.flightData.flight_number} <br></br>
+                      Departure At: {flight.flightData.departure_at} <br></br>
+                      Return At: {flight.flightData.return_at} <br></br>
+                      Expires at: {flight.flightData.expires_at} <br></br>
+                      {console.log("flight data with fav", flight)}
                     </Typography>
                   </CardContent>
                   <CardContent>
@@ -114,9 +139,20 @@ export default function Flights(props) {
                       size="small"
                       color="primary"
                       onClick={() => handleAdd(flight)}
-                    >
-                      Favourite
-                    </Button>
+                    />
+                    {flight.favourited === false ? (
+                      <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => handleAdd(flight, index)}
+                      >
+                        Favourite
+                      </Button>
+                    ) : (
+                      <Button size="small" color="primary">
+                        Favourited
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               </Grid>

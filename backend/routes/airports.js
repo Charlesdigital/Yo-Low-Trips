@@ -13,7 +13,7 @@ module.exports = (dbhelper) => {
 
     helpers.getAirportCodes(req.params.code)
     .then(function (rows) {
-        console.log("test7",rows);
+        // console.log("test7",rows);
         res.header("Access-Control-Allow-Origin", "*");
 
         res.json(

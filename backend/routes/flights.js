@@ -7,7 +7,7 @@ const { DatabaseError } = require("pg");
 module.exports = () => {
   router.get("/:id", (req, result) => {
 
-    console.log("test15", req.params)
+    // console.log("test15", req.params)
     // helpers.getUsers(2).then((result) => {
     //   const users = result[0];
     //   console.log(users);
@@ -61,7 +61,7 @@ module.exports = () => {
 
           for (let item in flightData) {
             const flightNumber = await helpers.getFlightNumber(flightData[item].flight_number)
-            console.log("test27", flightNumber)
+            // console.log("test27", flightNumber)
 
             return ({
                 destination: key,
