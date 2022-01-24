@@ -32,9 +32,6 @@ export default function FlightCodesModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* <pre>
-              {JSON.stringify(props.flightCodeData, null, 4)}
-              </pre> */}
           {props.flightCodeData.map((airports, index) => {
             return (
               <div key={index}>
