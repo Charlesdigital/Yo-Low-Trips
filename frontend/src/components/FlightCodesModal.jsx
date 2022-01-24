@@ -39,6 +39,7 @@ export default function FlightCodesModal(props) {
               {JSON.stringify(props.flightCodeData, null, 4)}
               </pre> */}
                 {props.flightCodeData.map((airports, index) => {
+                  
                   return <div key={index}>
                   <p>{airports.airport_name} </p>
                   <Button
