@@ -10,8 +10,10 @@ import {
   Container,
   Grid,
 } from "@mui/material";
-import { useParams } from 'react-router-dom';
-import PriceFilter from "./PriceFilter"
+import { useParams } from "react-router-dom";
+import PriceFilter from "./PriceFilter";
+import DestinationFilter from "./DestinationFilter";
+import DatesFilter from "./DatesFilter";
 
 // const bull = (
 //   <Box
@@ -23,24 +25,42 @@ import PriceFilter from "./PriceFilter"
 // );
 
 export default function Flights(props) {
-  let {id} = useParams()
-  const [minMaxValue, setminMaxValue] = React.useState([200, 500]);
+  let { id } = useParams();
+  const [minMaxValue, setminMaxValue] = React.useState([0, 500]);
 
-  const [state, setState] = useState({
-    flights: [],
-  });
+  const [flights, setFlights] = useState([]);
+
+  const [filterFlights, setFilterFlights] = useState([]);
+
+  const [selectedDestination, setSelectedDestination] = useState(null);
+
+  const [selectedDate, setSelectedDate] = useState(null);
+
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/flights/${id}`)
       .then((res) => {
         console.log("axios req data", res.data);
         const flightsData = res.data;
-        setState((prev) => ({ ...prev, flights: flightsData }));
+        setFlights(flightsData);
       })
       .catch((err) => {
         console.log("Error", err);
       });
   }, [id]);
+
+  useEffect(() => {
+    setFilterFlights(
+      flights.filter((flight) => {
+        //console.log("selecteddestination", selectedDestination, flight.destination)
+        return (
+          (flight.flightData.price > minMaxValue[0] &&
+          flight.flightData.price < minMaxValue[1]) && (selectedDestination === null || flight.destination === selectedDestination)
+        );
+      })
+    );
+  }, [minMaxValue, flights, selectedDestination]);
+
   console.log("STATE", state.flights);
 
   const handleAdd = (flightObj, index) => {
@@ -69,20 +89,21 @@ export default function Flights(props) {
   }
   console.log("test 25", minMaxValue)
 
+
   return (
     <div>
-      <PriceFilter
-      minMaxValue={minMaxValue}
-      setminMaxValue={setminMaxValue}
-      />
+      <PriceFilter minMaxValue={minMaxValue} setminMaxValue={setminMaxValue} />
+      <DestinationFilter setDestination={setSelectedDestination} flightData={filterFlights} />
+
+      <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
+
       <Typography variant="h1"> Flight Deals for {id} </Typography>
 
-      <Container >
+      <Container>
         <Grid container spacing={4}>
-
-          {state.flights.map((flight, index) => {
-            if (flight.flightData.price > minMaxValue[0] && flight.flightData.price < minMaxValue[1]) {
-              return (<Grid item xs={12} sm={6} md={3} key={index}>
+          {filterFlights.map((flight, index) => {
+            return (
+              <Grid item xs={12} sm={6} md={3} key={index}>
                 <Card>
                   <CardContent>
                     <Typography gutterBottom variant="h5">
@@ -101,18 +122,23 @@ export default function Flights(props) {
                     </Typography>
                   </CardContent>
                   <CardContent>
+
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => handleAdd(flight)}
+                    >
                     {flight.favourited === false ? <Button size="small" color="primary" onClick={() => handleAdd(flight, index)}>
+
                       Favourite
                     </Button>: <Button size="small" color="primary" >
                       Favourited
                     </Button>}
                   </CardContent>
                 </Card>
-              </Grid>)
-            }
-
-
-})}
+              </Grid>
+            );
+          })}
         </Grid>
       </Container>
     </div>
