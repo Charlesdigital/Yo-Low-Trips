@@ -13,6 +13,15 @@ import {
 import { useParams } from 'react-router-dom';
 import PriceFilter from "./PriceFilter"
 
+// const bull = (
+//   <Box
+//     component="span"
+//     sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+//   >
+//     •
+//   </Box>
+// );
+
 export default function Flights(props) {
   let {id} = useParams()
   const [minMaxValue, setminMaxValue] = React.useState([200, 500]);
@@ -80,13 +89,15 @@ export default function Flights(props) {
                       {flight.destination}
                     </Typography>
                     <Typography>
-                      Price: {flight.flightData.price},
+                      Price: {flight.flightData.price} <br></br>
                       {/* Destination:{flight.destination}, */}
-                      Expires at:{" "}
-                      {flight.flightData.expires_at}, Airline:{" "}
-                      {flight.flightData.airline}, Departure At:{" "}
-                      {flight.flightData.departure_at}, Return At:{" "}
-                      {flight.flightData.return_at}
+                      Airline:{" "} {flight.flightData.airline} <br></br>
+                      flight Number:  {flight.flightData.flight_number} <br></br>
+                      Departure At:{" "} {flight.flightData.departure_at} <br></br>
+                      Return At:{" "} {flight.flightData.return_at} <br></br>
+
+                      Expires at:{" "} {flight.flightData.expires_at} <br></br>
+
                     </Typography>
                   </CardContent>
                   <CardContent>
