@@ -15,17 +15,9 @@ import PriceFilter from "./PriceFilter";
 import DestinationFilter from "./DestinationFilter";
 import DatesFilter from "./DatesFilter";
 
-// const bull = (
-//   <Box
-//     component="span"
-//     sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-//   >
-//     •
-//   </Box>
-// );
 
 export default function Flights(props) {
-  
+
   let {id} = useParams()
 
   const {appFlightCode} = props;
@@ -42,6 +34,10 @@ export default function Flights(props) {
   const [selectedDestination, setSelectedDestination] = useState(null);
 
   const [selectedDate, setSelectedDate] = useState(null);
+
+  const [state, setState] = useState({
+    flights: [],
+  });
 
   useEffect(() => {
     axios
@@ -68,7 +64,7 @@ export default function Flights(props) {
     );
   }, [minMaxValue, flights, selectedDestination]);
 
-  console.log("STATE", state.flights);
+  console.log("this is flight", flights);
 
   const handleAdd = (flightObj, index) => {
    console.log("THIS IS FLIGHT OBJECT+++++", flightObj)
@@ -123,20 +119,18 @@ export default function Flights(props) {
                       flight Number:  {flight.flightData.flight_number} <br></br>
                       Departure At:{" "} {flight.flightData.departure_at} <br></br>
                       Return At:{" "} {flight.flightData.return_at} <br></br>
-
                       Expires at:{" "} {flight.flightData.expires_at} <br></br>
+                      {console.log("flight data with fav", flight)}
 
                     </Typography>
                   </CardContent>
                   <CardContent>
-
                     <Button
                       size="small"
                       color="primary"
                       onClick={() => handleAdd(flight)}
-                    >
+                    />
                     {flight.favourited === false ? <Button size="small" color="primary" onClick={() => handleAdd(flight, index)}>
-
                       Favourite
                     </Button>: <Button size="small" color="primary" >
                       Favourited

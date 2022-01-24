@@ -18,7 +18,7 @@ export default function DestinationFilter(props) {
 
       props.setDestination(newInputValue ? newInputValue : null);
     }}
-      
+
       sx={{ width: 300 }}
       options={props.flightData}
       autoHighlight
@@ -45,8 +45,8 @@ export default function DestinationFilter(props) {
 
 // {city: "", country: "", code: ""},
 
-const destinations = [
-  {city: "Toronto, ON", country: "Canada", code: "YYZ"},
-  {city: "Atlanta, GA", country: "USA", code: "ATL"},
-  {city: "Phuket", country: "Thailand", code: "HKT"},
-]
+// const destinations = [
+//   {city: "Toronto, ON", country: "Canada", code: "YYZ"},
+//   {city: "Atlanta, GA", country: "USA", code: "ATL"},
+//   {city: "Phuket", country: "Thailand", code: "HKT"},
+// ]
