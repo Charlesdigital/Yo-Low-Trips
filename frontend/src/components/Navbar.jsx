@@ -4,8 +4,10 @@ import { Link, useHistory } from "react-router-dom";
 /*** material-ui core components ***/
 import Button from '@mui/material/Button';
 
-export default function Navbar({user, setUser}) {
+export default function Navbar({user, setUser, code}) {
   const history = useHistory();
+
+  console.log("THIS IS CODE :", code)
 
   const handleLogout = async evt => {
     setUser(null);
@@ -21,15 +23,24 @@ export default function Navbar({user, setUser}) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <Button className="nav-link" aria-current="page" component={Link} to="/" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
+          { user &&
+            <Button className="nav-link" aria-current="page" component={Link} to="/" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
               Home
-          </Button>
-          <Button className="nav-link" aria-current="page" component={Link} to="/flights/:id" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
-              Flight Deals
-          </Button>
-          <Button className="nav-link" aria-current="page" component={Link} to="/favourites" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
+            </Button>
+          }
+          { user &&
+            // <Button className="nav-link" aria-current="page" component={Link} to="/flights/YYZ" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
+            //     Flight Deals
+            // </Button>
+            <Button className="nav-link" aria-current="page" component={Link} to={`/flights/${code}`} variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
+                Flight Deals
+            </Button>
+          }
+          { user &&
+            <Button className="nav-link" aria-current="page" component={Link} to="/favourites" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
               Favourites
-          </Button>
+            </Button>
+          }
           {
             !user ?
               // <div className="d-flex">

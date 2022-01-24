@@ -25,7 +25,14 @@ import DatesFilter from "./DatesFilter";
 // );
 
 export default function Flights(props) {
-  let { id } = useParams();
+  
+  let {id} = useParams()
+
+  const {appFlightCode} = props;
+  appFlightCode(id)
+
+  // console.log("THIS IS USE PARAMS: ", useParams())
+  // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
   const [minMaxValue, setminMaxValue] = React.useState([0, 500]);
 
   const [flights, setFlights] = useState([]);
