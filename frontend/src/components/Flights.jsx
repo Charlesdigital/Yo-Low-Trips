@@ -15,13 +15,11 @@ import PriceFilter from "./PriceFilter";
 import DestinationFilter from "./DestinationFilter";
 import DatesFilter from "./DatesFilter";
 
-
 export default function Flights(props) {
+  let { id } = useParams();
 
-  let {id} = useParams()
-
-  const {appFlightCode} = props;
-  appFlightCode(id)
+  const { appFlightCode } = props;
+  appFlightCode(id);
 
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
@@ -55,18 +53,23 @@ export default function Flights(props) {
   useEffect(() => {
     setFilterFlights(
       flights.filter((flight) => {
-        //console.log("selecteddestination", selectedDestination, flight.destination)
+        console.log("selectedDate", selectedDate, flight.flightData.departure_at)
         return (
-          (flight.flightData.price > minMaxValue[0] &&
-          flight.flightData.price < minMaxValue[1]) && (selectedDestination === null || flight.destination === selectedDestination)
+          flight.flightData.price > minMaxValue[0] &&
+          flight.flightData.price < minMaxValue[1] &&
+          (selectedDestination === null ||
+            flight.destination === selectedDestination) &&
+          (selectedDate === null ||
+            flight.flightData.departure_at === selectedDate)
         );
       })
     );
-  }, [minMaxValue, flights, selectedDestination]);
+  }, [minMaxValue, flights, selectedDestination, selectedDate]);
 
   console.log("this is flight", flights);
 
   const handleAdd = (flightObj, index) => {
+
    console.log("THIS IS FLIGHT OBJECT+++++", flightObj)
   //  const { destination } = flightObj; // destructure so it's easy to access
   //  const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
@@ -96,7 +99,11 @@ export default function Flights(props) {
   return (
     <div>
       <PriceFilter minMaxValue={minMaxValue} setminMaxValue={setminMaxValue} />
-      <DestinationFilter setDestination={setSelectedDestination} flightData={filterFlights} />
+
+      <DestinationFilter
+        setDestination={setSelectedDestination}
+        flightData={filterFlights}
+      />
 
       <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
 
@@ -116,13 +123,12 @@ export default function Flights(props) {
                     <Typography>
                       Price: {flight.flightData.price} <br></br>
                       {/* Destination:{flight.destination}, */}
-                      Airline:{" "} {flight.flightData.airline} <br></br>
-                      flight Number:  {flight.flightData.flight_number} <br></br>
-                      Departure At:{" "} {flight.flightData.departure_at} <br></br>
-                      Return At:{" "} {flight.flightData.return_at} <br></br>
-                      Expires at:{" "} {flight.flightData.expires_at} <br></br>
+                      Airline: {flight.flightData.airline} <br></br>
+                      flight Number: {flight.flightData.flight_number} <br></br>
+                      Departure At: {flight.flightData.departure_at} <br></br>
+                      Return At: {flight.flightData.return_at} <br></br>
+                      Expires at: {flight.flightData.expires_at} <br></br>
                       {console.log("flight data with fav", flight)}
-
                     </Typography>
                   </CardContent>
                   <CardContent>
@@ -131,11 +137,19 @@ export default function Flights(props) {
                       color="primary"
                       onClick={() => handleAdd(flight)}
                     />
-                    {flight.favourited === false ? <Button size="small" color="primary" onClick={() => handleAdd(flight, index)}>
-                      Favourite
-                    </Button>: <Button size="small" color="primary" >
-                      Favourited
-                    </Button>}
+                    {flight.favourited === false ? (
+                      <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => handleAdd(flight, index)}
+                      >
+                        Favourite
+                      </Button>
+                    ) : (
+                      <Button size="small" color="primary">
+                        Favourited
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               </Grid>
@@ -146,6 +160,3 @@ export default function Flights(props) {
     </div>
   );
 }
-
-
-// onClick={() => handleAdd(flight)}
