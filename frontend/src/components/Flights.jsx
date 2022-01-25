@@ -33,9 +33,9 @@ export default function Flights(props) {
 
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const [state, setState] = useState({
-    flights: [],
-  });
+  // const [state, setState] = useState({
+  //   flights: [],
+  // });
 
   useEffect(() => {
     axios
@@ -69,36 +69,32 @@ export default function Flights(props) {
   console.log("this is flight", flights);
 
   const handleAdd = (flightObj, index) => {
-    console.log("THIS IS FLIGHT OBJECT+++++", flightObj);
-    //  const { destination } = flightObj; // destructure so it's easy to access
-    //  const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
-    //  const abc = new Date(departure_at).getTime();
-    // let flight_id = `${airline}-${abc}-${flight_number}` // set this as id for local database
-    // console.log(typeof flight_id)
 
-    let user = JSON.parse(localStorage.getItem("YoLowUser"));
-    const user_id = user.id;
-    //  console.log ("USER----------", user_id)
-    axios
-      .post(`http://localhost:3001/api/flights/${id}/user/favourites/`, {
-        flightObj,
-        user_id,
-      })
-      .then((response) => {
-        const flightsData = {
-          favourited: true,
-          destination: flightObj.destination,
-          flightData: { ...response.data },
-        };
-        console.log("THIS IS RESDATA+++++++", flightsData);
+   console.log("THIS IS FLIGHT OBJECT+++++", flightObj)
+  //  const { destination } = flightObj; // destructure so it's easy to access
+  //  const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
+  //  const abc = new Date(departure_at).getTime();
+  // let flight_id = `${airline}-${abc}-${flight_number}` // set this as id for local database
+  // console.log(typeof flight_id)
 
-        const newFlights = [...state.flights];
-        newFlights[index] = flightsData;
-        console.log("THIS IS RES+++++++", response);
-        setState(() => ({ flights: newFlights }));
-      });
-  };
-  console.log("test 25", minMaxValue);
+   let user = JSON.parse(localStorage.getItem("YoLowUser"));
+   const user_id = user.id;
+  //  console.log ("USER----------", user_id)
+   axios
+   .post(`http://localhost:3001/api/flights/${id}/user/favourites/`, { flightObj, user_id })
+   .then(response => {
+     const flightsData = {favourited: true, destination: flightObj.destination, flightData: {...response.data}}
+     console.log("THIS IS RESDATA+++++++", flightsData)
+
+     const newFlights = [...flights]
+     newFlights[index] = flightsData
+     console.log("THIS IS RES+++++++", response)
+     setFlights(newFlights);
+
+   })
+  }
+  console.log("test 25", minMaxValue)
+
 
   return (
     <div>
@@ -121,6 +117,7 @@ export default function Flights(props) {
                 <Card>
                   <CardContent>
                     <Typography gutterBottom variant="h5">
+                    {/* Need to add the airport name  */}
                       {flight.destination}
                     </Typography>
                     <Typography>

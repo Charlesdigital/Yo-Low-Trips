@@ -58,23 +58,39 @@ module.exports = () => {
         // const flightArray = [];
         const flightArrayPromises = Object.keys(data).map(async (key) => {
           const flightData = data[key];
+          const flightObject = {};
 
+          // console.log("flightdata",flightData)
           for (let item in flightData) {
+            // console.log("itemflight", item)
             const flightNumber = await helpers.getFlightNumber(flightData[item].flight_number)
             // console.log("test27", flightNumber)
-
-            return ({
+            // console.log("flightobject",({
+            //   destination: key,
+            //   flightData: flightData[item],
+            //   favourited: flightNumber[0] ? true: false
+            // }))
+            flightObject[item] = ({
                 destination: key,
                 flightData: flightData[item],
                 favourited: flightNumber[0] ? true: false
               });
           }
-
+          return flightObject
         });
         const flightArray = await Promise.all(flightArrayPromises)
+        const flightArrayParse = [];
 
-        console.log("RES", flightArray);
-        result.json(flightArray);
+        for (const flightItem of flightArray) {
+          // console.log("what is this", flightItem)
+          for (const flightObject in flightItem) {
+            // console.log("what is this2", flightItem[flightObject])
+            flightArrayParse.push(flightItem[flightObject])
+          }
+        }
+
+        console.log("RES", flightArrayParse);
+        result.json(flightArrayParse);
       });
 
     //console.log(response)
