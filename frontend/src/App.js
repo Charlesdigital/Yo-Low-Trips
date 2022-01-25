@@ -1,5 +1,5 @@
 /* Root/ Parent component */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 import {
@@ -26,6 +26,7 @@ function App() {
     // password: "",
   );
 
+
   const [code, setCode] = useState("");
 
   const flightCode = (flightId) => {
@@ -33,6 +34,13 @@ function App() {
     setCode(flightId === "" ?  "" : flightId)
   }
 
+  useEffect(()=> {
+   const currentUser = localStorage.getItem("YoLowUser");
+   if (currentUser) {
+     setUser(JSON.parse(currentUser));
+   }
+
+  },[])
   // console.log("THIS IS FLIGHT CODE DATA INITIAL STATE", code);
 
   //  for each flight data item

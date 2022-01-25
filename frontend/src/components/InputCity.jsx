@@ -33,7 +33,8 @@ export default function InputCity(props) {
 
   console.log("test 15", flightCodeData)
    //pass as a prop to your custom modal
-  function validate() {
+  function validate(event, city) {
+    event.preventDefault()
     // if(city === "") {
     // setError("City name cannot be blank");
     //   return;
@@ -52,9 +53,9 @@ export default function InputCity(props) {
 
 // need to change main
   return (
-    <main>
+    <>
       <h1> Yo-Low-Trips </h1>
-      <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
+      <form autoComplete="off" onSubmit={(event) => validate(event,city)}>
         <Input sx={border}
           type="text"
           placeholder="Enter a city"
@@ -62,7 +63,7 @@ export default function InputCity(props) {
             setCity(event.target.value);
           }}
         />
-        <Button sx={border} onClick={() => validate(city)}>
+        <Button sx={border} >
             Search
           </Button>
       </form>
@@ -73,7 +74,7 @@ export default function InputCity(props) {
       code = {props.code}
       setCode = {props.setCode}
       />
-    </main>
+    </>
   );
 }
 
