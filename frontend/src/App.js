@@ -58,14 +58,14 @@ function App() {
         <div className="content">
           <Switch>
             {/* all routes goes inside switch component */}
-            <Route exact path="/">
+            <Route exact path="/search">
               {/* homepage */}
               <InputCity
                 code={code}
                 setcode={setCode}
               />
             </Route>
-            <Route exact path="/login">
+            <Route exact path="/">
               <Login setUser={setUser} />
             </Route>
             <Route exact path={`/flights/:id`}>

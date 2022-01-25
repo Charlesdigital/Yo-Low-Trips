@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 /*** material-ui core components ***/
 import AppBar from '@mui/material/AppBar';
@@ -8,8 +8,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import { Button } from "@mui/material";
 
 
 export default function Navbar({user, setUser, code}) {
@@ -20,7 +20,7 @@ export default function Navbar({user, setUser, code}) {
   const handleLogout = async evt => {
     setUser(null);
     localStorage.removeItem("YoLowUser")
-    history.push("/login");
+    history.push("/");
   }
 
   return (
@@ -39,44 +39,47 @@ export default function Navbar({user, setUser, code}) {
         </Typography>
           <nav>
             { user &&
-              <Link
+              <Button
                 variant="button"
                 color="text.primary"
-                to="/"
+                component={Link}
+                to="/search"
                 sx={{ my: 1, mx: 1.5 }}
               >
                 Search Origin
-              </Link>
+              </Button>
             }
             { user &&
-              <Link
+              <Button
                 variant="button"
                 color="text.primary"
+                component={Link}
                 to={`/flights/${code}`}
                 sx={{ my: 1, mx: 1.5 }}
               >
                 Fight Deals
-              </Link>
+              </Button>
             }
             { user &&
-              <Link
+              <Button
                 variant="button"
                 color="text.primary"
+                component={Link}
                 to="/favourites"
                 sx={{ my: 1, mx: 1.5 }}
               >
                 Favourites
-              </Link>
+              </Button>
             }
             { user &&
-              <Link
+              <Button
                 variant="button"
                 color="text.primary"
                 onClick={handleLogout}
                 sx={{ my: 1, mx: 1.5 }}
               >
                 Logout
-              </Link>
+              </Button>
             }
           </nav> 
         </Toolbar>
