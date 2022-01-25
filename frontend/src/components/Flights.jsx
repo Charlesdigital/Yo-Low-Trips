@@ -190,29 +190,14 @@ export default function Flights(props) {
                       {airportNamesLookupTable[flight.destination] ? `${airportNamesLookupTable[flight.destination]} - ${flight.destination}` : flight.destination}
                     </Typography>
                     <Typography>
-//                       Price: {flight.flightData.price} <br></br>
-//                       {/* Destination:{flight.destination}, */}
-//                       Airline: {flight.flightData.airline} <br></br>
-                      
-//                       Flight Number: {flight.flightData.flight_number} <br></br>
-//                       Departure At:{" "}
-//                       {flight.flightData.departure_at.slice(0, 10)} <br></br>
-//                       Return At: {flight.flightData.return_at.slice(0, 10)}{" "}
-//                       <br></br>
-//                       Expires at: {flight.flightData.expires_at.slice(
-//                         0,
-//                         10
-//                       )}{" "}
-//                       <br></br>
-
-//                       {console.log("flight data with fav", flight)}
-
+                      Price: {flight.flightData.price} <br></br>
+                      {/* Destination:{flight.destination}, */}
+                      Airline: {flight.flightData.airline} <br></br>
                       flight Number: {flight.flightData.flight_number} <br></br>
                       Departure At: {moment(flight.flightData.departure_a).format('LLL')} <br></br>
                       Return At: {moment(flight.flightData.return_at).format('LLL')} <br></br>
                       Expires at: {moment(flight.flightData.expires_at).format('LLL')} <br></br>
                       {/* {console.log("flight data with fav", flight)} */}
-
                     </Typography>
                   </CardContent>
                   <CardContent>
