@@ -10,7 +10,9 @@ import {
   Button,
   Container,
   Grid,
+  Paper,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
 import PriceFilter from "./PriceFilter";
 import DestinationFilter from "./DestinationFilter";
@@ -23,9 +25,29 @@ export default function Flights(props) {
   const { appFlightCode } = props;
   appFlightCode(id);
 
+  const priceReset = () => {
+    setminMaxValue([0, 1000]);
+    console.log("resetted price");
+  };
+  const destinationReset = () => {
+    setSelectedDestination(null);
+    console.log("resetted destination");
+  };
+  const dateReset = () => {
+    setSelectedDate(null);
+    console.log("resetted date");
+  };
+
+  const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
-  const [minMaxValue, setminMaxValue] = React.useState([0, 500]);
+  const [minMaxValue, setminMaxValue] = React.useState([0, 1000]);
 
   const [flights, setFlights] = useState([]);
 
@@ -55,14 +77,23 @@ export default function Flights(props) {
   useEffect(() => {
     setFilterFlights(
       flights.filter((flight) => {
+
+        // console.log(
+        //   "selectedDate",
+        //   selectedDate,
+        //   flight.flightData.departure_at
+        // );
+
         // console.log("selectedDate", selectedDate, flight.flightData.departure_at)
+
         return (
           flight.flightData.price > minMaxValue[0] &&
           flight.flightData.price < minMaxValue[1] &&
           (selectedDestination === null ||
             flight.destination === selectedDestination) &&
           (selectedDate === null ||
-            flight.flightData.departure_at === selectedDate)
+            flight.flightData.departure_at.slice(0, 10) ===
+              selectedDate.slice(0, 10))
         );
       })
     );
@@ -101,17 +132,52 @@ export default function Flights(props) {
 
   return (
     <div>
-      <PriceFilter minMaxValue={minMaxValue} setminMaxValue={setminMaxValue} />
+       <Typography variant="h1">Flight Deals for {id.toUpperCase()}</Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <Item>
+            {/* <h5>Price range</h5>
+      <p>Between</p>
+      <Typography>{minMaxValue[0]}</Typography>
+      <p>To</p>
+      <Typography>{minMaxValue[1]}</Typography> */}
 
-      <DestinationFilter
-        setDestination={setSelectedDestination}
-        flightData={filterFlights}
-      />
+            <PriceFilter
+              minMaxValue={minMaxValue}
+              setminMaxValue={setminMaxValue}
+            />
+            <Button size="small" color="primary" onClick={() => priceReset()}>
+              Reset Price
+            </Button>
+          </Item>
+        </Grid>
+        <Grid item>
+          <Item>
+            <DestinationFilter
+              selectedDestination={selectedDestination}
+              setDestination={setSelectedDestination}
+              flightData={filterFlights}
+            />
+            <Button
+              size="small"
+              color="primary"
+              onClick={() => destinationReset()}
+            >
+              Reset Destination
+            </Button>
+          </Item>
+        </Grid>
+        <Grid item xs>
+          <Item>
+            <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
+            <Button size="small" color="primary" onClick={() => dateReset()}>
+              Reset Date
+            </Button>
+          </Item>
+        </Grid>
+      </Grid>
 
-      <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
-
-      <Typography variant="h1"> Flight Deals for {id} </Typography>
-
+     
       <Container>
         <Grid container spacing={4}>
           {filterFlights.map((flight, index) => {
@@ -124,14 +190,29 @@ export default function Flights(props) {
                       {airportNamesLookupTable[flight.destination] ? `${airportNamesLookupTable[flight.destination]} - ${flight.destination}` : flight.destination}
                     </Typography>
                     <Typography>
-                      Price: {flight.flightData.price} <br></br>
-                      {/* Destination:{flight.destination}, */}
-                      Airline: {flight.flightData.airline} <br></br>
+//                       Price: {flight.flightData.price} <br></br>
+//                       {/* Destination:{flight.destination}, */}
+//                       Airline: {flight.flightData.airline} <br></br>
+                      
+//                       Flight Number: {flight.flightData.flight_number} <br></br>
+//                       Departure At:{" "}
+//                       {flight.flightData.departure_at.slice(0, 10)} <br></br>
+//                       Return At: {flight.flightData.return_at.slice(0, 10)}{" "}
+//                       <br></br>
+//                       Expires at: {flight.flightData.expires_at.slice(
+//                         0,
+//                         10
+//                       )}{" "}
+//                       <br></br>
+
+//                       {console.log("flight data with fav", flight)}
+
                       flight Number: {flight.flightData.flight_number} <br></br>
                       Departure At: {moment(flight.flightData.departure_a).format('LLL')} <br></br>
                       Return At: {moment(flight.flightData.return_at).format('LLL')} <br></br>
                       Expires at: {moment(flight.flightData.expires_at).format('LLL')} <br></br>
                       {/* {console.log("flight data with fav", flight)} */}
+
                     </Typography>
                   </CardContent>
                   <CardContent>

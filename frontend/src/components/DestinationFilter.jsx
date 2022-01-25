@@ -1,7 +1,7 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 export default function DestinationFilter(props) {
   // console.log("props.flightData", props.flightData.flights)
@@ -10,32 +10,35 @@ export default function DestinationFilter(props) {
   // const [inputValue, setInputValue] = React.useState('');
   return (
     <Autocomplete
-    onChange={(event, newValue) => {
-      props.setDestination(newValue.destination)
-    }}
-
-    onInputChange={(event, newInputValue) => {
-
-      props.setDestination(newInputValue ? newInputValue : null);
-    }}
-
+      onChange={(event, newValue) => {
+        props.setDestination(newValue);
+      }}
+      onInputChange={(event, newInputValue) => {
+        props.setDestination(newInputValue ? newInputValue : null);
+      }}
       sx={{ width: 300 }}
-      options={props.flightData}
+      value={props.selectedDestination}
+      // inputValue={props.selectedDestination}
+      options={props.flightData.map(flight => flight.destination)}
       autoHighlight
-      getOptionLabel={(option) => option.destination}
+      getOptionLabel={(option) => option}
       renderOption={(props, option) => (
-        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-          {option.destination}
+        <Box
+          component="li"
+          sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+          {...props}
+        >
+          {option}
         </Box>
       )}
       renderInput={(params) => (
-        // console.log("params", params),
+         //console.log("params", params.inputProps),
         <TextField
           {...params}
           label="Choose a destination"
           inputProps={{
             ...params.inputProps,
-            autoComplete: 'new-password', // disable autocomplete and autofill
+            autoComplete: "new-password", // disable autocomplete and autofill
           }}
         />
       )}
