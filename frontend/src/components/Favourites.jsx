@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
+import moment from "moment"
 
 export default function Favourites(props) {
   const [state, setState] = useState({
@@ -30,7 +31,7 @@ export default function Favourites(props) {
   const handleRemove = (fav) => {
     let fav_id = fav.favid
     // console.log("THIS IS THE FAVOURITE OBJ ID: ", fav.favid)
-    
+
     // const copyFav = [...state] // Original state
 
     // const newState = copyFav.filter(favourite => favourite.favId !== fav_id)
@@ -38,7 +39,7 @@ export default function Favourites(props) {
     // console.log("THIS IS copyFav after filter: ", newState);
 
     // setState(newState);
-    
+
     return axios.post(`http://localhost:3001/user/delete/${fav_id}`)
       .then(response => {
         // console.log("THIS REMOVE WORKS!!!!!!", response)
@@ -46,7 +47,7 @@ export default function Favourites(props) {
         user = JSON.parse(user) // convert back to object from JSON.stringify
         const user_id = user.id;
       // console.log(">>>>>>>", user)
-      
+
       // use another axios call to fetch the data again
       axios
       .get(`http://localhost:3001/user/favourites/${user_id}`)
@@ -63,7 +64,7 @@ export default function Favourites(props) {
       });
       })
   }
-  
+
   return (
     <div>
       <p>Hello</p>
@@ -76,7 +77,7 @@ export default function Favourites(props) {
             Departure Date: {fav.departure_at},
             Return Date: {fav.return_at},
             Promo Price: {fav.price},
-            Promo Expiration: {fav.expires_at}
+            Promo Expiration: {moment(fav.expires_at).format('LLL')}
             <button type="submit" onClick={() => handleRemove(fav)}>Remove</button>
           </li>
         ))}
