@@ -17,6 +17,8 @@ import { useParams } from "react-router-dom";
 import PriceFilter from "./PriceFilter";
 import DestinationFilter from "./DestinationFilter";
 import DatesFilter from "./DatesFilter";
+// import airportNamesLookupTable from "./helpers/airportNamesLookupTable";
+import {airportNamesLookup} from "../helpers/airportNamesLookupTable";
 
 
 export default function Flights(props) {
@@ -128,7 +130,6 @@ export default function Flights(props) {
   }
   // console.log("test 25", minMaxValue)
 
-  const airportNamesLookupTable = {ATL: "Atlanta, GA" }
 
   return (
     <div>
@@ -177,7 +178,7 @@ export default function Flights(props) {
         </Grid>
       </Grid>
 
-     
+
       <Container>
         <Grid container spacing={4}>
           {filterFlights.map((flight, index) => {
@@ -187,16 +188,15 @@ export default function Flights(props) {
                   <CardContent>
                     <Typography gutterBottom variant="h5">
                     {/* Need to add the airport name  */}
-                      {airportNamesLookupTable[flight.destination] ? `${airportNamesLookupTable[flight.destination]} - ${flight.destination}` : flight.destination}
+                      {airportNamesLookup[flight.destination] ? `${airportNamesLookup[flight.destination]} - ${flight.destination}` : flight.destination}
                     </Typography>
                     <Typography>
                       Price: {flight.flightData.price} <br></br>
-                      {/* Destination:{flight.destination}, */}
                       Airline: {flight.flightData.airline} <br></br>
                       flight Number: {flight.flightData.flight_number} <br></br>
                       Departure At: {moment(flight.flightData.departure_a).format('LLL')} <br></br>
                       Return At: {moment(flight.flightData.return_at).format('LLL')} <br></br>
-                      Expires at: {moment(flight.flightData.expires_at).format('LLL')} <br></br>
+                      Expires At: {moment(flight.flightData.expires_at).format('LLL')} <br></br>
                       {/* {console.log("flight data with fav", flight)} */}
                     </Typography>
                   </CardContent>
