@@ -35,9 +35,9 @@ export default function Flights(props) {
 
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const [state, setState] = useState({
-    flights: [],
-  });
+  // const [state, setState] = useState({
+  //   flights: [],
+  // });
 
   useEffect(() => {
     axios
@@ -83,10 +83,10 @@ export default function Flights(props) {
      const flightsData = {favourited: true, destination: flightObj.destination, flightData: {...response.data}}
      console.log("THIS IS RESDATA+++++++", flightsData)
 
-     const newFlights = [...state.flights]
+     const newFlights = [...flights]
      newFlights[index] = flightsData
      console.log("THIS IS RES+++++++", response)
-     setState(() => ({ flights: newFlights }));
+     setFlights(newFlights);
 
    })
   }
@@ -110,6 +110,7 @@ export default function Flights(props) {
                 <Card>
                   <CardContent>
                     <Typography gutterBottom variant="h5">
+                    {/* Need to add the airport name  */}
                       {flight.destination}
                     </Typography>
                     <Typography>
