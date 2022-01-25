@@ -5,6 +5,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 export default function DatesFilter(props) {
   // console.log("props.flightData", props.flightData.flights)
+const newArray = props.flightData.map(flight => flight.flightData.departure_at)
+const sortedArray = newArray.sort()
 
   // const [value, setValue] = React.useState(options[0]);
   // const [inputValue, setInputValue] = React.useState('');
@@ -20,17 +22,17 @@ export default function DatesFilter(props) {
       }}
       sx={{ width: 300 }}
       value={props.selectedDate}
-      options={props.flightData.map(flight => flight.flightData.departure_at)}
+      options={sortedArray}
       autoHighlight
       getOptionLabel={(option) => 
-      option}
+      option.slice(0, 10)}
       renderOption={(props, option) => (
         <Box
           component="li"
           sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
           {...props}
         >
-          {option}
+          {option.slice(0, 10)}
         </Box>
       )}
       renderInput={(params) => (

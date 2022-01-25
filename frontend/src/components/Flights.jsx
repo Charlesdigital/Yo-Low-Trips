@@ -9,7 +9,9 @@ import {
   Button,
   Container,
   Grid,
+  Paper,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
 import PriceFilter from "./PriceFilter";
 import DestinationFilter from "./DestinationFilter";
@@ -33,6 +35,13 @@ export default function Flights(props) {
     setSelectedDate(null);
     console.log("resetted date");
   };
+
+  const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
 
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
@@ -77,7 +86,8 @@ export default function Flights(props) {
           (selectedDestination === null ||
             flight.destination === selectedDestination) &&
           (selectedDate === null ||
-            flight.flightData.departure_at === selectedDate)
+            flight.flightData.departure_at.slice(0, 10) ===
+              selectedDate.slice(0, 10))
         );
       })
     );
@@ -115,33 +125,56 @@ export default function Flights(props) {
         setState(() => ({ flights: newFlights }));
       });
   };
-  console.log("test 25", minMaxValue);
+  //console.log("test 25", minMaxValue);
 
   return (
     <div>
-      <PriceFilter minMaxValue={minMaxValue} setminMaxValue={setminMaxValue} />
-      <Button size="small" color="primary" onClick={() => priceReset()}>
-       
-        Reset Price
-      </Button>
+       <Typography variant="h1">Flight Deals for {id.toUpperCase()}</Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <Item>
+            {/* <h5>Price range</h5>
+      <p>Between</p>
+      <Typography>{minMaxValue[0]}</Typography>
+      <p>To</p>
+      <Typography>{minMaxValue[1]}</Typography> */}
 
-      <DestinationFilter
-        selectedDestination={selectedDestination}
-        setDestination={setSelectedDestination}
-        flightData={filterFlights}
-      />
-      <Button size="small" color="primary" onClick={() => destinationReset()}>
+            <PriceFilter
+              minMaxValue={minMaxValue}
+              setminMaxValue={setminMaxValue}
+            />
+            <Button size="small" color="primary" onClick={() => priceReset()}>
+              Reset Price
+            </Button>
+          </Item>
+        </Grid>
+        <Grid item>
+          <Item>
+            <DestinationFilter
+              selectedDestination={selectedDestination}
+              setDestination={setSelectedDestination}
+              flightData={filterFlights}
+            />
+            <Button
+              size="small"
+              color="primary"
+              onClick={() => destinationReset()}
+            >
+              Reset Destination
+            </Button>
+          </Item>
+        </Grid>
+        <Grid item xs>
+          <Item>
+            <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
+            <Button size="small" color="primary" onClick={() => dateReset()}>
+              Reset Date
+            </Button>
+          </Item>
+        </Grid>
+      </Grid>
+
      
-        Reset Destination
-      </Button>
-      <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
-      <Button size="small" color="primary" onClick={() => dateReset()}>
-    
-        Reset Date
-      </Button>
-
-      <Typography variant="h1"> Flight Deals for {id.toUpperCase()} </Typography>
-
       <Container>
         <Grid container spacing={4}>
           {filterFlights.map((flight, index) => {
@@ -157,9 +190,15 @@ export default function Flights(props) {
                       {/* Destination:{flight.destination}, */}
                       Airline: {flight.flightData.airline} <br></br>
                       Flight Number: {flight.flightData.flight_number} <br></br>
-                      Departure At: {flight.flightData.departure_at} <br></br>
-                      Return At: {flight.flightData.return_at} <br></br>
-                      Expires at: {flight.flightData.expires_at} <br></br>
+                      Departure At:{" "}
+                      {flight.flightData.departure_at.slice(0, 10)} <br></br>
+                      Return At: {flight.flightData.return_at.slice(0, 10)}{" "}
+                      <br></br>
+                      Expires at: {flight.flightData.expires_at.slice(
+                        0,
+                        10
+                      )}{" "}
+                      <br></br>
                       {console.log("flight data with fav", flight)}
                     </Typography>
                   </CardContent>
