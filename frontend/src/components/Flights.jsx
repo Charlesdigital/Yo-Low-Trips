@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 import {
   Typography,
   Card,
@@ -14,6 +15,7 @@ import { useParams } from "react-router-dom";
 import PriceFilter from "./PriceFilter";
 import DestinationFilter from "./DestinationFilter";
 import DatesFilter from "./DatesFilter";
+
 
 export default function Flights(props) {
   let { id } = useParams();
@@ -53,7 +55,7 @@ export default function Flights(props) {
   useEffect(() => {
     setFilterFlights(
       flights.filter((flight) => {
-        console.log("selectedDate", selectedDate, flight.flightData.departure_at)
+        // console.log("selectedDate", selectedDate, flight.flightData.departure_at)
         return (
           flight.flightData.price > minMaxValue[0] &&
           flight.flightData.price < minMaxValue[1] &&
@@ -66,7 +68,7 @@ export default function Flights(props) {
     );
   }, [minMaxValue, flights, selectedDestination, selectedDate]);
 
-  console.log("this is flight", flights);
+  // console.log("this is flight", flights);
 
   const handleAdd = (flightObj, index) => {
 
@@ -93,8 +95,9 @@ export default function Flights(props) {
 
    })
   }
-  console.log("test 25", minMaxValue)
+  // console.log("test 25", minMaxValue)
 
+  const airportNamesLookupTable = {ATL: "Atlanta, GA" }
 
   return (
     <div>
@@ -118,17 +121,17 @@ export default function Flights(props) {
                   <CardContent>
                     <Typography gutterBottom variant="h5">
                     {/* Need to add the airport name  */}
-                      {flight.destination}
+                      {airportNamesLookupTable[flight.destination] ? `${airportNamesLookupTable[flight.destination]} - ${flight.destination}` : flight.destination}
                     </Typography>
                     <Typography>
                       Price: {flight.flightData.price} <br></br>
                       {/* Destination:{flight.destination}, */}
                       Airline: {flight.flightData.airline} <br></br>
                       flight Number: {flight.flightData.flight_number} <br></br>
-                      Departure At: {flight.flightData.departure_at} <br></br>
-                      Return At: {flight.flightData.return_at} <br></br>
-                      Expires at: {flight.flightData.expires_at} <br></br>
-                      {console.log("flight data with fav", flight)}
+                      Departure At: {moment(flight.flightData.departure_a).format('LLL')} <br></br>
+                      Return At: {moment(flight.flightData.return_at).format('LLL')} <br></br>
+                      Expires at: {moment(flight.flightData.expires_at).format('LLL')} <br></br>
+                      {/* {console.log("flight data with fav", flight)} */}
                     </Typography>
                   </CardContent>
                   <CardContent>

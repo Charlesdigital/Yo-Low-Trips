@@ -19,9 +19,9 @@ export default function Navbar({user, setUser, code}) {
     <nav className="navbar navbar-expand-lg navbar-light ">
       <div className="container-fluid">
         <Link to="/">Yo-Low Trips</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> */}
         <div className="collapse navbar-collapse" id="navbarNav">
           { user &&
             <Button className="nav-link" aria-current="page" component={Link} to="/" variant="text" color="secondary" style={{ textTransform: "none", fontFamily: "'Poppins', sans-serif", fontSize: "0.9rem" }}>
