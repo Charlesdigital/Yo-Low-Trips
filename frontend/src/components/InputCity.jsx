@@ -63,7 +63,7 @@ export default function InputCity(props) {
             setCity(event.target.value);
           }}
         />
-        <Button sx={border} >
+        <Button sx={border} onClick={(event) => validate(event,city)}>
             Search
           </Button>
       </form>
