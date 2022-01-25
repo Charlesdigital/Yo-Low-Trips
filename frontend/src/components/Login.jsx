@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-// import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -11,7 +10,6 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -61,7 +59,7 @@ export default function Login({ setUser }) {
     evt.preventDefault();
     login({ email, password });
     // setUser(user);
-    history.push('/'); // redirects to flights screen after successful login
+    history.push('/search'); // redirects to flights screen after successful login
   }
 
   return (
