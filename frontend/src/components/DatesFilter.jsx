@@ -5,9 +5,18 @@ import Autocomplete from "@mui/material/Autocomplete";
 import moment from "moment";
 
 export default function DatesFilter(props) {
-  // console.log("props.flightData", props.flightData.flights)
-const newArray = props.flightData.map(flight => flight.flightData.departure_at)
-const sortedArray = newArray.sort()
+  //console.log("props.flightData", props.flightData)
+const newArray = (props.flightData.map(flight => flight.flightData.departure_at))
+
+const sortedArray = [...new Set(props.flightData.map(item => {
+console.log(item.flightData.departure_at.slice(0, 10))
+
+  return item.flightData.departure_at.slice(0, 10)
+}))]
+console.log("SA", sortedArray)
+// const filteredArray = sortedArray.filter((flight) => (
+
+// ))
 
   // const [value, setValue] = React.useState(options[0]);
   // const [inputValue, setInputValue] = React.useState('');
