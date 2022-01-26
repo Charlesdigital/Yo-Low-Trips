@@ -200,7 +200,7 @@ export default function Flights(props) {
                       {/* {console.log("flight data with fav", flight)} */}
                     </Typography>
                     <Typography >
-                    <span className="titles">Price</span>:  <span className="price">${flight.flightData.price} </span> <br></br>
+                    <span className="price">${flight.flightData.price} </span> <br></br>
 
                     </Typography>
 
@@ -209,18 +209,21 @@ export default function Flights(props) {
                     <Button
                       size="small"
                       color="primary"
+                      variants="outlined"
                       onClick={() => handleAdd(flight)}
                     />
                     {flight.favourited === false ? (
                       <Button
                         size="small"
                         color="primary"
+                        variants="outlined"
                         onClick={() => handleAdd(flight, index)}
                       >
                         Favourite
                       </Button>
                     ) : (
-                      <Button size="small" color="warning">
+                      <Button size="small" color="warning" variants="outlined"
+                      >
                         Favourited
                       </Button>
                     )}

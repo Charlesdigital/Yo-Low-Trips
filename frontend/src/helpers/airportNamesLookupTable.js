@@ -1501,6 +1501,7 @@
       SEL: "Seoul, Korea",
       OKJ:"Okayama, Japan",
       FMY: "Southwest Florida, USA",
+      YEA: "Edmonton, Alberta, Canada"
     }
 
     // exports.name = airportNamesLookup;
