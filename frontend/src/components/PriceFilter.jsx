@@ -7,6 +7,7 @@ function valuetext(value) {
 }
 
 export default function RangeSlider(props) {
+  console.log("rangeslider", props)
 const {minMaxValue, setminMaxValue} = props
 
 //   console.log("test 25", value)
@@ -15,13 +16,13 @@ const {minMaxValue, setminMaxValue} = props
   };
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box >
       <Slider
-        getAriaLabel={() => 'Temperature range'}
+        // getAriaLabel={() => 'Temperature range'}
         value={minMaxValue}
         onChange={handleChange}
         min={0}
-        max={500}
+        max={2000}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
       />
