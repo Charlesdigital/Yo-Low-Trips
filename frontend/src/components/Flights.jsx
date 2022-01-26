@@ -1,10 +1,9 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import {
   Typography,
   Card,
-  Box,
   CardActions,
   CardContent,
   Button,
@@ -19,6 +18,7 @@ import DestinationFilter from "./DestinationFilter";
 import DatesFilter from "./DatesFilter";
 // import airportNamesLookupTable from "./helpers/airportNamesLookupTable";
 import {airportNamesLookup} from "../helpers/airportNamesLookupTable";
+import "./Flights.css";
 
 
 export default function Flights(props) {
@@ -49,7 +49,7 @@ export default function Flights(props) {
 
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
-  const [minMaxValue, setminMaxValue] = React.useState([0, 1000]);
+  const [minMaxValue, setminMaxValue] = React.useState([0, 2000]);
 
   const [flights, setFlights] = useState([]);
 
@@ -133,10 +133,10 @@ export default function Flights(props) {
 
   return (
     <div>
-       <Typography variant="h1">Flight Deals for {id.toUpperCase()}</Typography>
-      <Grid container spacing={2}>
+       <Typography className = "center" variant="h1">Flight Deals for {id.toUpperCase()}</Typography>
+      <Grid container spacing={4} justify-content="center" alignItems="center" style={{padding:"0 100px"}} >
         <Grid item xs={4}>
-          <Item>
+          <Item >
             {/* <h5>Price range</h5>
       <p>Between</p>
       <Typography>{minMaxValue[0]}</Typography>
@@ -152,8 +152,8 @@ export default function Flights(props) {
             </Button>
           </Item>
         </Grid>
-        <Grid item>
-          <Item>
+        <Grid item xs={4} >
+          <Item className="destinationFilter">
             <DestinationFilter
               selectedDestination={selectedDestination}
               setDestination={setSelectedDestination}
@@ -168,8 +168,8 @@ export default function Flights(props) {
             </Button>
           </Item>
         </Grid>
-        <Grid item xs>
-          <Item>
+        <Grid item xs={4}>
+          <Item className="departureFilter">
             <DatesFilter setDate={setSelectedDate} flightData={filterFlights} />
             <Button size="small" color="primary" onClick={() => dateReset()}>
               Reset Date
@@ -180,25 +180,30 @@ export default function Flights(props) {
 
 
       <Container>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} marginTop="100px" alignItems="stretch" >
           {filterFlights.map((flight, index) => {
             return (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card>
+              <Grid item xs={12} sm={6} md={3} key={index} height="100%" alignItems="stretch">
+                <Card sx={{height:"400px"}}>
                   <CardContent>
                     <Typography gutterBottom variant="h5">
                     {/* Need to add the airport name  */}
                       {airportNamesLookup[flight.destination] ? `${airportNamesLookup[flight.destination]} - ${flight.destination}` : flight.destination}
                     </Typography>
-                    <Typography>
-                      Price: {flight.flightData.price} <br></br>
+                    <Typography >
                       Airline: {flight.flightData.airline} <br></br>
                       flight Number: {flight.flightData.flight_number} <br></br>
                       Departure At: {moment(flight.flightData.departure_a).format('LLL')} <br></br>
                       Return At: {moment(flight.flightData.return_at).format('LLL')} <br></br>
                       Expires At: {moment(flight.flightData.expires_at).format('LLL')} <br></br>
+
                       {/* {console.log("flight data with fav", flight)} */}
                     </Typography>
+                    <Typography >
+                    Price:  <span className="price">{flight.flightData.price} </span> <br></br>
+
+                    </Typography>
+
                   </CardContent>
                   <CardContent>
                     <Button
@@ -215,7 +220,7 @@ export default function Flights(props) {
                         Favourite
                       </Button>
                     ) : (
-                      <Button size="small" color="primary">
+                      <Button size="small" color="warning">
                         Favourited
                       </Button>
                     )}
