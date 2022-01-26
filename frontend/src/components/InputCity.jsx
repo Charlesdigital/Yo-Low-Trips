@@ -55,6 +55,8 @@ export default function InputCity(props) {
   return (
     <>
       <h1> Yo-Low-Trips </h1>
+
+
       <form autoComplete="off" onSubmit={(event) => validate(event,city)}>
         <Input sx={border}
           type="text"
