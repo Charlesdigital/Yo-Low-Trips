@@ -1,18 +1,14 @@
-import axios from "axios";
 import React, { useState } from "react";
-import FlightCodesModal from "./FlightCodesModal";
+import axios from "axios";
+
+/*** Files ***/
 import "../styles/InputCity.css";
+import FlightCodesModal from "./FlightCodesModal";
+
+/*** Material Ui ***/
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 
-
-const border = {
-  border: '2px solid #000',
-};
-
-// const button = {
-//   bgcolor: 'text.secondary'
-// }
 
 function requestAirportCode(city) {
   console.log("test3", city)
@@ -48,11 +44,7 @@ export default function InputCity(props) {
       }
     })
   }
-//set modal to open, pass it true);
 
-// {console.log("test12???", setflightCodeData)}
-
-// need to change main
   return (
     <>
       <div className="inputCityImg">
@@ -61,14 +53,19 @@ export default function InputCity(props) {
           <p>Let's start with where you want to fly out from.</p>
           <form autoComplete="off" onSubmit={(event) => validate(event,city)}>
             <Input
-              sx={border}
-              type="text"
-              placeholder="Enter a city"
+              className="inputField"
+              placeholder="Enter a City"
               onChange={(event)=> {
                 setCity(event.target.value);
               }}
+              sx={{ border: 1, borderRadius: 1, width: 250 }}
             />
-            <Button sx={border} onClick={(event) => validate(event,city)}>
+            <Button
+              className="searchButton"
+              variant="button"
+              onClick={(event) => validate(event,city)}
+              sx={{ my: 1, mx: 1.5 }}
+            >
               Search
             </Button>
           </form>
