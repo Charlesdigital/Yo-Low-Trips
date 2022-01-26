@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import FlightCodesModal from "./FlightCodesModal";
+import "../styles/InputCity.css";
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 
@@ -54,26 +55,32 @@ export default function InputCity(props) {
 // need to change main
   return (
     <>
-      <h1> Yo-Low-Trips </h1>
-      <form autoComplete="off" onSubmit={(event) => validate(event,city)}>
-        <Input sx={border}
-          type="text"
-          placeholder="Enter a city"
-          onChange={(event)=> {
-            setCity(event.target.value);
-          }}
-        />
-        <Button sx={border} onClick={(event) => validate(event,city)}>
-            Search
-          </Button>
-      </form>
-      <FlightCodesModal
-      open={open}
-      setOpen={setOpen}
-      flightCodeData={flightCodeData}
-      code = {props.code}
-      setCode = {props.setCode}
-      />
+      <div className="inputCityImg">
+        <div className="tagline">
+          <h1 className="display-4">Experience the World</h1>
+          <p>Let's start with where you want to fly out from.</p>
+          <form autoComplete="off" onSubmit={(event) => validate(event,city)}>
+            <Input
+              sx={border}
+              type="text"
+              placeholder="Enter a city"
+              onChange={(event)=> {
+                setCity(event.target.value);
+              }}
+            />
+            <Button sx={border} onClick={(event) => validate(event,city)}>
+              Search
+            </Button>
+          </form>
+          <FlightCodesModal
+          open={open}
+          setOpen={setOpen}
+          flightCodeData={flightCodeData}
+          code = {props.code}
+          setCode = {props.setCode}
+          />
+        </div>
+      </div>
     </>
   );
 }
