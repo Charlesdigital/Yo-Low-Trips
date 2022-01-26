@@ -82,8 +82,12 @@ export default function Favourites(props) {
 
   return (
     <div>
+      <Typography className = "center" variant="h1">Flight Favourites</Typography>
+
+
+
       <Container>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} marginTop="100px" alignItems="stretch">
           {state.favourites.map((fav, index) => (
             // <li key={fav.favid}>
             <Grid
@@ -105,13 +109,17 @@ export default function Favourites(props) {
                         ? `${airportNamesLookup[fav.origin]} - ${fav.origin}`
                         : fav.origin)
                     }
-                    , Destination: {
-                      ((fav.destination = fav.origin.toUpperCase()),
-                      airportNamesLookup[fav.origin]
-                        ? `${airportNamesLookup[fav.origin]} - ${fav.origin}`
+                    , Destination:{" "}
+                    {
+                      ((fav.destination = fav.destination.toUpperCase()),
+                      airportNamesLookup[fav.destination]
+                        ? `${airportNamesLookup[fav.destination]} - ${
+                            fav.destination
+                          }`
                         : fav.origin)
-                    }, Departure Date:{" "}
-                    {fav.departure_at}, Return Date: {fav.return_at}, Promo
+                    }
+                    , Departure Date: {moment(fav.departure_at).format("LLL")},
+                    Return Date: {moment(fav.return_at).format("LLL")}, Promo
                     Price: {fav.price}, Promo Expiration:{" "}
                     {moment(fav.expires_at).format("LLL")}
                     <Button
