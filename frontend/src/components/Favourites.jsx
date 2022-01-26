@@ -11,7 +11,13 @@ import {
   Container,
   Grid,
   Paper,
+  Divider
 } from "@mui/material";
+
+import "./Flights.css"
+//mui icons
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { airportNamesLookup } from "../helpers/airportNamesLookupTable";
@@ -97,13 +103,13 @@ export default function Favourites(props) {
 
   return (
     <div>
-      <Typography className="center" variant="h1">
+      <Typography variant="h4" align="left">
         Flight Favourites
       </Typography>
 
       <ThemeProvider theme={theme}>
         <Container>
-          <Grid container spacing={4} marginTop="100px" alignItems="stretch">
+          <Grid container spacing={6} marginTop="60px" alignItems="stretch">
             {state.favourites.map((fav, index) => (
               // <li key={fav.favid}>
 
@@ -111,13 +117,13 @@ export default function Favourites(props) {
                 item
                 xs={12}
                 sm={6}
-                md={3}
+                md={12}
                 key={index}
                 height="100%"
                 alignItems="stretch"
               >
                 <Paper
-                  sx={{ p: 2, margin: "auto", maxWidth: 500, flexGrow: 1 }}
+                  sx={{ p: 2, margin: "auto", maxWidth: 1000, flexGrow: 1 }}
                 >
                   <Grid container spacing={2}>
                     <Grid item></Grid>
@@ -128,8 +134,10 @@ export default function Favourites(props) {
                             gutterBottom
                             variant="subtitle1"
                             component="div"
-                          >
+                          > <span className="pop">
                             Destination:{" "}
+                            </span>
+                            <Typography variant="h6">
                             {
                               ((fav.destination =
                                 fav.destination.toUpperCase()),
@@ -139,8 +147,10 @@ export default function Favourites(props) {
                                   }`
                                 : fav.destination)
                             }
-                            <br></br> 
-                            <Typography variant="">Origin: </Typography>
+                            </Typography>
+                           
+                            <Typography variant="body"> <span className="pop">Origin: </span></Typography> 
+                            <Typography variant="h6">
                             {
                               ((fav.origin = fav.origin.toUpperCase()),
                               airportNamesLookup[fav.origin]
@@ -149,7 +159,7 @@ export default function Favourites(props) {
                                   }`
                                 : fav.origin)
                             }
-                            
+                            </Typography>
                           </Typography>
                           <Typography variant="body2" gutterBottom>
                             Departure Date:{" "}
@@ -166,27 +176,37 @@ export default function Favourites(props) {
                             </Typography>
                           </Typography>
                         </Grid>
+                        
                         <Grid item>
-                          <Typography variant="body2">
+                        <Divider />
+                          <Typography variant="body2" align="left" component="div">
                             <Button
                               size="small"
                               color="primary"
                               onClick={() => handleRemove(fav)}
                             >
+                              <DeleteOutlineIcon></DeleteOutlineIcon>
                               Remove
                             </Button>
                           </Typography>
                         </Grid>
                       </Grid>
                       <Grid item>
-                        <Typography variant="subtitle1" component="div">
+                        <Typography variant="h6" component="div">
+                        
+                        <span className="pop"> 
+                        <LocalOfferIcon fontSize="small"></LocalOfferIcon>
                           ${fav.price}
+                          
+                          </span>
+                         
                         </Typography>
+                      
                       </Grid>
                     </Grid>
                   </Grid>
                 </Paper>
-
+             
                 {/* <Card sx={{ height: "400px" }}>
                 <CardContent>
                   <Typography>
@@ -220,7 +240,9 @@ export default function Favourites(props) {
                   </Typography>
                 </CardContent>
               </Card> */}
+              
               </Grid>
+              
             ))}
           </Grid>
         </Container>
