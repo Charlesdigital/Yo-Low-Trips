@@ -11,14 +11,14 @@ import {
   Grid,
   Paper,
   Divider,
-  Box 
+  Box
 } from "@mui/material";
 
 import LinearProgress from '@mui/material/LinearProgress';
 //icons
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckIcon from '@mui/icons-material/Check';
-
+import StarIcon from '@mui/icons-material/Star';
 
 import { styled } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
@@ -58,7 +58,8 @@ export default function Flights(props) {
 
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
-  const [minMaxValue, setminMaxValue] = React.useState([0, 1000]);
+  
+  const [minMaxValue, setminMaxValue] = React.useState([0, 1600]);
 
   const [flights, setFlights] = useState([]);
 
@@ -206,6 +207,7 @@ export default function Flights(props) {
       </Typography>
 
       <Container>
+
         {(filterFlights.length > 0) ?
           `${filterFlights.length} flights found` : 
           ((flights.length > 0) ?
@@ -225,18 +227,17 @@ export default function Flights(props) {
                       <span className="pop">{airportNamesLookup[flight.destination] ? `${airportNamesLookup[flight.destination]} - ${flight.destination}` : flight.destination}</span>
                       <Divider />
                     </Typography>
-                    
+
                     <Typography >
-                    <span className="titles">Airline:</span> {flight.flightData.airline} <br></br>
+                      <span className="titles">Airline:</span> {flight.flightData.airline} <br></br>
                       <span className="titles">Flight Number:</span> {flight.flightData.flight_number} <br></br>
                       <span className="titles">Departure At:</span> {moment(flight.flightData.departure_a).format('LLL')} <br></br>
                       <span className="titles">Return At:</span> {moment(flight.flightData.return_at).format('LLL')} <br></br>
                       <span className="titles expire">Expires At:</span> {moment(flight.flightData.expires_at).format('LLL')} <br></br>
-
                     </Typography>
 
                     <Typography >
-                    <span className="titles">Price</span> : <span className="price">${flight.flightData.price} </span> <br></br>
+                      <span className="titles">Price</span> : <span className="price">${flight.flightData.price} </span> <br></br>
                     </Typography>
                   </CardContent>
                   
@@ -257,7 +258,7 @@ export default function Flights(props) {
                       </Button>
                     ) : (
                       <Button size="small" color="warning">
-                        <CheckIcon></CheckIcon>
+                        <StarIcon></StarIcon>
                         Favourited
                       </Button>
                     )}
