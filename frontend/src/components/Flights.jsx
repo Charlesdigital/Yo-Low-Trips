@@ -18,7 +18,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 //icons
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckIcon from '@mui/icons-material/Check';
-
+import StarIcon from '@mui/icons-material/Star';
 
 import { styled } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
@@ -59,7 +59,7 @@ export default function Flights(props) {
 
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
-  const [minMaxValue, setminMaxValue] = React.useState([0, 2000]);
+  const [minMaxValue, setminMaxValue] = React.useState([0, 1600]);
 
   const [flights, setFlights] = useState([]);
 
@@ -143,7 +143,10 @@ export default function Flights(props) {
 
   return (
     <div>
-       <Typography className = "center" variant="h1">Flight Deals from {id.toUpperCase()}</Typography>
+
+       <Typography className = "center" variant="h1">Flight Deals for {id.toUpperCase()}</Typography>
+       
+
       <Grid container spacing={4} justify-content="center" alignItems="center" style={{padding:"0 100px"}} >
         <Grid item xs={4}>
           <Item className="filterBox">
@@ -152,11 +155,11 @@ export default function Flights(props) {
       <Typography>{minMaxValue[0]}</Typography>
       <p>To</p>
       <Typography>{minMaxValue[1]}</Typography> */}
-
-            <PriceFilter className="priceFilter"
+<PriceFilter className="priceFilter"
               minMaxValue={minMaxValue}
               setminMaxValue={setminMaxValue}
             />
+            
             <Button size="small" color="primary" onClick={() => priceReset()}>
               Reset Price
             </Button>
@@ -205,7 +208,7 @@ export default function Flights(props) {
               <Grid item xs={12} sm={6} md={3} key={index} height="100%" alignItems="stretch">
                 <Card  sx={{height:"400px"}}>
                   <CardContent className="cards">
-                    <Typography gutterBottom variant="h5">
+                    <Typography gutterBottom variant="h5" sx={{ minHeight: '70px' }} >
                     {/* Need to add the airport name  */}
                       <span className="pop">{airportNamesLookup[flight.destination] ? `${airportNamesLookup[flight.destination]} - ${flight.destination}` : flight.destination}</span>
                       <Divider />
@@ -244,7 +247,7 @@ export default function Flights(props) {
                       </Button>
                     ) : (
                       <Button size="small" color="warning">
-                        <CheckIcon></CheckIcon>
+                        <StarIcon></StarIcon>
                         Favourited
                       </Button>
                     )}
