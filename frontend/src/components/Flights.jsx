@@ -223,7 +223,7 @@ export default function Flights(props) {
               <Grid item xs={12} sm={6} md={3} key={index} height="100%" alignItems="stretch">
                 <Card  sx={{height:"400px"}}>
                   <CardContent className="cards">
-                    <Typography gutterBottom variant="h5">
+                    <Typography gutterBottom variant="h5" sx={{ minHeight: '71px' }}>
                       <span className="pop">{airportNamesLookup[flight.destination] ? `${airportNamesLookup[flight.destination]} - ${flight.destination}` : flight.destination}</span>
                       <Divider />
                     </Typography>
@@ -242,11 +242,6 @@ export default function Flights(props) {
                   </CardContent>
                   
                   <CardContent className="cards">
-                    <Button
-                      size="small"
-                      color="primary"
-                      onClick={() => handleAdd(flight)}
-                    />
                     {flight.favourited === false ? (
                       <Button
                         size="small"
