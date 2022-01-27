@@ -65,7 +65,7 @@ VALUES
 ('Constantine'),
 ('Hassi Messaoud'),
 ('Jijel'),
-('Oran'),
+('startpostgres'),
 ('Sétif'),
 ('Tamanrasset'),
 ('Tlemcen'),
