@@ -22,7 +22,7 @@ const {minMaxValue, setminMaxValue} = props
         value={minMaxValue}
         onChange={handleChange}
         min={0}
-        max={1000}
+        max={1500}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
       />

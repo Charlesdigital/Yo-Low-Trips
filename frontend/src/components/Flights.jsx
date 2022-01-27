@@ -4,7 +4,6 @@ import moment from "moment";
 import {
   Typography,
   Card,
-  CardActions,
   CardContent,
   Button,
   Container,
@@ -17,7 +16,6 @@ import {
 import LinearProgress from '@mui/material/LinearProgress';
 //icons
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import CheckIcon from '@mui/icons-material/Check';
 import StarIcon from '@mui/icons-material/Star';
 
 import { styled } from "@mui/material/styles";
@@ -28,7 +26,6 @@ import DatesFilter from "./DatesFilter";
 // import airportNamesLookupTable from "./helpers/airportNamesLookupTable";
 import {airportNamesLookup} from "../helpers/airportNamesLookupTable";
 import "./Flights.css";
-import Check from "@mui/icons-material/Check";
 
 
 export default function Flights(props) {
@@ -58,7 +55,7 @@ export default function Flights(props) {
 
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
-  
+
   const [minMaxValue, setminMaxValue] = React.useState([0, 1600]);
 
   const [flights, setFlights] = useState([]);
@@ -147,10 +144,10 @@ export default function Flights(props) {
         <Typography className="filterHeading">
           Flight Filters
         </Typography>
-        <Grid 
+        <Grid
           display="flex"
           className="filters"
-          // container spacing={4} 
+          // container spacing={4}
           justify-content="center"
           alignItems="center"
           // style={{padding:"0 100px"}}
@@ -209,12 +206,12 @@ export default function Flights(props) {
       <Container>
 
         {(filterFlights.length > 0) ?
-          `${filterFlights.length} flights found` : 
+          `${filterFlights.length} flights found` :
           ((flights.length > 0) ?
             `${flights.length} flights found` :
             <Box sx={{ width: '100%' }}>
               <LinearProgress />
-            </Box> 
+            </Box>
           )
         }
         <Grid container spacing={4} alignItems="stretch" >
@@ -240,7 +237,7 @@ export default function Flights(props) {
                       <span className="titles">Price</span> : <span className="price">${flight.flightData.price} </span> <br></br>
                     </Typography>
                   </CardContent>
-                  
+
                   <CardContent className="cards">
                     {flight.favourited === false ? (
                       <Button
