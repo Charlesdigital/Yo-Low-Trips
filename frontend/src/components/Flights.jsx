@@ -228,7 +228,7 @@ export default function Flights(props) {
                     <Typography >
                       <span className="titles">Airline:</span> {flight.flightData.airline} <br></br>
                       <span className="titles">Flight Number:</span> {flight.flightData.flight_number} <br></br>
-                      <span className="titles">Departure At:</span> {moment(flight.flightData.departure_a).format('LLL')} <br></br>
+                      <span className="titles">Departure At:</span> {moment(flight.flightData.departure_at).format('LLL')} <br></br>
                       <span className="titles">Return At:</span> {moment(flight.flightData.return_at).format('LLL')} <br></br>
                       <span className="titles expire">Expires At:</span> {moment(flight.flightData.expires_at).format('LLL')} <br></br>
                     </Typography>
