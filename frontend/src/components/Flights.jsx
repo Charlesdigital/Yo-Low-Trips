@@ -54,12 +54,11 @@ export default function Flights(props) {
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
-    color: theme.palette.text.secondary,
   }));
 
   // console.log("THIS IS USE PARAMS: ", useParams())
   // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
-  const [minMaxValue, setminMaxValue] = React.useState([0, 2000]);
+  const [minMaxValue, setminMaxValue] = React.useState([0, 1000]);
 
   const [flights, setFlights] = useState([]);
 
@@ -142,71 +141,87 @@ export default function Flights(props) {
 
 
   return (
-    <div>
-       <Typography className = "center" variant="h1">Flight Deals for {id.toUpperCase()}</Typography>
-      <Grid container spacing={4} justify-content="center" alignItems="center" style={{padding:"0 100px"}} >
-        <Grid item xs={4}>
-          <Item className="filterBox">
-            {/* <h5>Price range</h5>
-      <p>Between</p>
-      <Typography>{minMaxValue[0]}</Typography>
-      <p>To</p>
-      <Typography>{minMaxValue[1]}</Typography> */}
+    <>
+      <article className="flightFilters">
+        <Typography className="filterHeading">
+          Flight Filters
+        </Typography>
+        <Grid 
+          display="flex"
+          className="filters"
+          // container spacing={4} 
+          justify-content="center"
+          alignItems="center"
+          // style={{padding:"0 100px"}}
+        >
+          <Grid item xs={4}>
+            <Item className="filterBox">
+              <Typography className="minMaxHeader" color="#626567">
+                Price Range
+              </Typography>
+              <PriceFilter
+                className="priceFilter"
+                minMaxValue={minMaxValue}
+                setminMaxValue={setminMaxValue}
+              />
+              <Button
+                className="reset"
+                size="small"
+                onClick={() => priceReset()}
+              >
+                Reset Price
+              </Button>
+            </Item>
+          </Grid>
+          <Grid item xs={4} >
+            <Item className="destinationFilter">
+              <DestinationFilter
+                selectedDestination={selectedDestination}
+                setDestination={setSelectedDestination}
+                flightData={filterFlights}
+              />
+              <Button
+                size="small"
+                color="primary"
+                onClick={() => destinationReset()}
+              >
+                Reset Destination
+              </Button>
+            </Item>
+          </Grid>
+          <Grid item xs={4}>
+            <Item className="departureFilter">
+              <DatesFilter selectedDate={selectedDate} setDate={setSelectedDate} flightData={filterFlights} />
+              <Button size="small" color="primary" onClick={() => dateReset()}>
+                Reset Date
+              </Button>
+            </Item>
+          </Grid>
+        </Grid>
+      </article>
 
-            <PriceFilter className="priceFilter"
-              minMaxValue={minMaxValue}
-              setminMaxValue={setminMaxValue}
-            />
-            <Button size="small" color="primary" onClick={() => priceReset()}>
-              Reset Price
-            </Button>
-          </Item>
-        </Grid>
-        <Grid item xs={4} >
-          <Item className="destinationFilter">
-            <DestinationFilter
-              selectedDestination={selectedDestination}
-              setDestination={setSelectedDestination}
-              flightData={filterFlights}
-            />
-            <Button
-              size="small"
-              color="primary"
-              onClick={() => destinationReset()}
-            >
-              Reset Destination
-            </Button>
-          </Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item className="departureFilter">
-            <DatesFilter selectedDate={selectedDate} setDate={setSelectedDate} flightData={filterFlights} />
-            <Button size="small" color="primary" onClick={() => dateReset()}>
-              Reset Date
-            </Button>
-          </Item>
-        </Grid>
-      </Grid>
-
+      <div>
+      <Typography className = "textHeading" marginTop="50px">
+        Flight Deals for {id.toUpperCase()}
+      </Typography>
 
       <Container>
-      
-      { (filterFlights.length > 0) ? `${filterFlights.length} flights found` :
-      
-      ((flights.length > 0) ? `${flights.length} flights found` : <Box sx={{ width: '100%' }}>
-      <LinearProgress />
-    </Box> )}
-
-
-        <Grid container spacing={4} marginTop="100px" alignItems="stretch" >
-          
+        {(filterFlights.length > 0) ?
+          `${filterFlights.length} flights found` : 
+          ((flights.length > 0) ?
+            `${flights.length} flights found` :
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+            </Box> 
+          )
+        }
+        <Grid container spacing={4} alignItems="stretch" >
           {filterFlights.map((flight, index) => {
             return (
               <Grid item xs={12} sm={6} md={3} key={index} height="100%" alignItems="stretch">
                 <Card  sx={{height:"400px"}}>
                   <CardContent className="cards">
                     <Typography gutterBottom variant="h5">
-                    {/* Need to add the airport name  */}
                       <span className="pop">{airportNamesLookup[flight.destination] ? `${airportNamesLookup[flight.destination]} - ${flight.destination}` : flight.destination}</span>
                       <Divider />
                     </Typography>
@@ -218,15 +233,13 @@ export default function Flights(props) {
                       <span className="titles">Return At:</span> {moment(flight.flightData.return_at).format('LLL')} <br></br>
                       <span className="titles expire">Expires At:</span> {moment(flight.flightData.expires_at).format('LLL')} <br></br>
 
-                      {/* {console.log("flight data with fav", flight)} */}
                     </Typography>
+
                     <Typography >
-                    
-                    <span className="titles">Price</span>:  <span className="price">${flight.flightData.price} </span> <br></br>
-
+                    <span className="titles">Price</span> : <span className="price">${flight.flightData.price} </span> <br></br>
                     </Typography>
-
                   </CardContent>
+                  
                   <CardContent className="cards">
                     <Button
                       size="small"
@@ -255,6 +268,7 @@ export default function Flights(props) {
           })}
         </Grid>
       </Container>
-    </div>
+      </div>
+    </>
   );
 }
