@@ -103,7 +103,7 @@ export default function Favourites(props) {
 
   return (
     <div>
-      <Typography variant="h4" align="left">
+      <Typography className = "center" variant="h1" align="left">
         Flight Favourites
       </Typography>
 
@@ -148,8 +148,8 @@ export default function Favourites(props) {
                                 : fav.destination)
                             }
                             </Typography>
-                           
-                            <Typography variant="body"> <span className="pop">Origin: </span></Typography> 
+
+                            <Typography variant="body"> <span className="pop">Origin: </span></Typography>
                             <Typography variant="h6">
                             {
                               ((fav.origin = fav.origin.toUpperCase()),
@@ -176,7 +176,7 @@ export default function Favourites(props) {
                             </Typography>
                           </Typography>
                         </Grid>
-                        
+
                         <Grid item>
                         <Divider />
                           <Typography variant="body2" align="left" component="div">
@@ -193,20 +193,20 @@ export default function Favourites(props) {
                       </Grid>
                       <Grid item>
                         <Typography variant="h6" component="div">
-                        
-                        <span className="pop"> 
+
+                        <span className="pop">
                         <LocalOfferIcon fontSize="small"></LocalOfferIcon>
                           ${fav.price}
-                          
+
                           </span>
-                         
+
                         </Typography>
-                      
+
                       </Grid>
                     </Grid>
                   </Grid>
                 </Paper>
-             
+
                 {/* <Card sx={{ height: "400px" }}>
                 <CardContent>
                   <Typography>
@@ -240,9 +240,9 @@ export default function Favourites(props) {
                   </Typography>
                 </CardContent>
               </Card> */}
-              
+
               </Grid>
-              
+
             ))}
           </Grid>
         </Container>

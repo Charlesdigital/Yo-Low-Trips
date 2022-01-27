@@ -11,7 +11,7 @@ import {
   Grid,
   Paper,
   Divider,
-  Box 
+  Box
 } from "@mui/material";
 
 import LinearProgress from '@mui/material/LinearProgress';
@@ -143,8 +143,10 @@ export default function Flights(props) {
 
   return (
     <div>
+
        <Typography className = "center" variant="h1">Flight Deals for {id.toUpperCase()}</Typography>
        
+
       <Grid container spacing={4} justify-content="center" alignItems="center" style={{padding:"0 100px"}} >
         <Grid item xs={4}>
           <Item className="filterBox">
@@ -191,16 +193,16 @@ export default function Flights(props) {
 
 
       <Container>
-      
+
       { (filterFlights.length > 0) ? `${filterFlights.length} flights found` :
-      
+
       ((flights.length > 0) ? `${flights.length} flights found` : <Box sx={{ width: '100%' }}>
       <LinearProgress />
     </Box> )}
 
 
         <Grid container spacing={4} marginTop="100px" alignItems="stretch" >
-          
+
           {filterFlights.map((flight, index) => {
             return (
               <Grid item xs={12} sm={6} md={3} key={index} height="100%" alignItems="stretch">
@@ -211,7 +213,7 @@ export default function Flights(props) {
                       <span className="pop">{airportNamesLookup[flight.destination] ? `${airportNamesLookup[flight.destination]} - ${flight.destination}` : flight.destination}</span>
                       <Divider />
                     </Typography>
-                    
+
                     <Typography >
                     <span className="titles">Airline:</span> {flight.flightData.airline} <br></br>
                       <span className="titles">Flight Number:</span> {flight.flightData.flight_number} <br></br>
@@ -222,7 +224,7 @@ export default function Flights(props) {
                       {/* {console.log("flight data with fav", flight)} */}
                     </Typography>
                     <Typography >
-                    
+
                     <span className="titles">Price</span>:  <span className="price">${flight.flightData.price} </span> <br></br>
 
                     </Typography>
