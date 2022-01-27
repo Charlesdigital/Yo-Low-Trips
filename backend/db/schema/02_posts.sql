@@ -25,9 +25,9 @@ CREATE TABLE favourites (
     price INTEGER NOT NULL,
     airline VARCHAR(2) NOT NULL,
     flight_number VARCHAR(4) NOT NULL,
-    departure_at TIMESTAMP,
-    return_at TIMESTAMP,
-    expires_at TIMESTAMP
+    departure_at TEXT,
+    return_at TEXT,
+    expires_at TEXT
 );
 
 CREATE TABLE activities (
