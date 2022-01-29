@@ -1,6 +1,6 @@
 # Yo-Low-Trips
 
-![](frontend/src/assets/images/Yo-Low-trips demo.gif)
+![](frontend/src/assets/images/Yo-Low-trips-demo.gif)
 
 ## Setup
 
