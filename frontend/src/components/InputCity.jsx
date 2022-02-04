@@ -9,9 +9,8 @@ import FlightCodesModal from "./FlightCodesModal";
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 
-
+//Get all airport codes based on the city submitted
 function requestAirportCode(city) {
-  console.log("test3", city)
   return axios.get(`/airports/${city}`)
   .then(function (response) {
     return response
@@ -24,19 +23,12 @@ function requestAirportCode(city) {
 export default function InputCity(props) {
 
   const [city, setCity] = useState("");
-  // const [error, setError] = useState();
   const [open,setOpen] = useState(false);
   const [flightCodeData, setflightCodeData] = useState([]);
 
-  console.log("test 15", flightCodeData)
    //pass as a prop to your custom modal
   function validate(event, city) {
     event.preventDefault()
-    // if(city === "") {
-    // setError("City name cannot be blank");
-    //   return;
-    // }
-    // setError("");
     requestAirportCode(city).then((response) => {
       if(response.data) {
         setflightCodeData(response.data);
@@ -50,7 +42,7 @@ export default function InputCity(props) {
       <div className="inputCityImg">
         <div className="tagline">
           <h1 className="display-4">Experience the World</h1>
-          <p>Let's start with where you want to fly out from.</p>
+          <p>Lets start with where you want to fly out from.</p>
           <form autoComplete="off" onSubmit={(event) => validate(event,city)}>
             <Input
               className="inputField"
@@ -81,9 +73,3 @@ export default function InputCity(props) {
     </>
   );
 }
-
-
-
-//1. create a form and on submit call a function
-//2. creating an axios.get to get display the aiport code
-//3. using react router to display
