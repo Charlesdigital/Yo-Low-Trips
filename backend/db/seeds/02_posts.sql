@@ -590,8 +590,8 @@ VALUES
 ('Port Hedland'),
 ('Sunshine Coast'),
 ('Sydney'),
-('Townsville');
-
+('Townsville'),
+('Mauritius');
 
 
 
@@ -1141,6 +1141,6 @@ VALUES
 ('AVV', 540, 'Avalon Airport'),
 ('OOL', 541, 'Gold Coast Airport'),
 ('HBA', 542, 'Hobart Airport'),
-('MEL', 543, 'Melbourne Airport');
-
+('MEL', 543, 'Melbourne Airport'),
+('MRU', 544, 'Sir Seewoosagur Ramgoolam International Airport');
 
