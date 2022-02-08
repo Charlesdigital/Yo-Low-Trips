@@ -8,19 +8,6 @@ const { DatabaseError } = require("pg");
 module.exports = () => {
   router.get("/:id", (req, result) => {
 
-    // console.log("test15", req.params)
-    // helpers.getUsers(2).then((result) => {
-    //   const users = result[0];
-    //   console.log(users);
-    //   //important for CORS error
-    //   res.header("Access-Control-Allow-Origin", "*");
-    //   //res.status(200).json({ users })
-    //   res.send({ users });
-    //   // res.json("db result", { users });
-    // });
-
-
-
     const params = {
       origin: req.params.id,
       page: "None", // default it shows 100 object
@@ -56,21 +43,13 @@ module.exports = () => {
       .then(async (res) => {
         const data = res.data;
 
-        // const flightArray = [];
         const flightArrayPromises = Object.keys(data).map(async (key) => {
           const flightData = data[key];
           const flightObject = {};
 
-          // console.log("flightdata",flightData)
           for (let item in flightData) {
-            // console.log("itemflight", item)
             const flightNumber = await helpers.getFlightNumber(flightData[item].flight_number)
-            // console.log("test27", flightNumber)
-            // console.log("flightobject",({
-            //   destination: key,
-            //   flightData: flightData[item],
-            //   favourited: flightNumber[0] ? true: false
-            // }))
+            //set object for flight data and if favourited
             flightObject[item] = ({
                 destination: key,
                 flightData: flightData[item],
@@ -83,9 +62,7 @@ module.exports = () => {
         const flightArrayParse = [];
 
         for (const flightItem of flightArray) {
-          // console.log("what is this", flightItem)
           for (const flightObject in flightItem) {
-            // console.log("what is this2", flightItem[flightObject])
             flightArrayParse.push(flightItem[flightObject])
           }
         }
@@ -94,7 +71,6 @@ module.exports = () => {
         result.json(flightArrayParse);
       });
 
-    //console.log(response)
 
   });
 
@@ -104,12 +80,10 @@ module.exports = () => {
     const { flightObj, user_id } = req.body
     const { destination } = flightObj; // destructure so it's easy to access
     const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
-    // console.log(`THIS IS PRICE: ${price} && THIS IS DESTINATION ${destination}`)
 
     const fav_id = Math.floor(Math.random() * 100);
     helpers.addToFavourite(fav_id, user_id, flightObj, id)
       .then((response) => {
-        // console.log("THIS IS BKEND RESPONSE", response)
         const favFlight = response;
         res.send(favFlight);
       })
