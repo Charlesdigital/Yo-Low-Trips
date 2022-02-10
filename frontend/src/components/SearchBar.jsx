@@ -14,7 +14,6 @@ export default function SearchBar(props) {
         value={origin}
         onChange={(event) => setOrigin(event.target.value)}
       />
-      {console.log("DEPARTING CITY", origin)}
     </div>
   );
 }

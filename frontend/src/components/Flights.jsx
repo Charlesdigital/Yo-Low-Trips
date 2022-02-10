@@ -23,7 +23,6 @@ import { useParams } from "react-router-dom";
 import PriceFilter from "./PriceFilter";
 import DestinationFilter from "./DestinationFilter";
 import DatesFilter from "./DatesFilter";
-// import airportNamesLookupTable from "./helpers/airportNamesLookupTable";
 import {airportNamesLookup} from "../helpers/airportNamesLookupTable";
 import "./Flights.css";
 
@@ -36,15 +35,12 @@ export default function Flights(props) {
 
   const priceReset = () => {
     setminMaxValue([0, 1200]);
-    //console.log("resetted price");
   };
   const destinationReset = () => {
     setSelectedDestination(null);
-    //console.log("resetted destination");
   };
   const dateReset = () => {
     setSelectedDate(null);
-    //console.log("resetted date");
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -53,22 +49,12 @@ export default function Flights(props) {
     textAlign: "center",
   }));
 
-  // console.log("THIS IS USE PARAMS: ", useParams())
-  // console.log("THIS SHOULD BE FLIGHTCODE ID: ", id)
 
   const [minMaxValue, setminMaxValue] = React.useState([0, 1200]);
-
   const [flights, setFlights] = useState([]);
-
   const [filterFlights, setFilterFlights] = useState([]);
-
   const [selectedDestination, setSelectedDestination] = useState(null);
-
   const [selectedDate, setSelectedDate] = useState(null);
-
-  // const [state, setState] = useState({
-  //   flights: [],
-  // });
 
   useEffect(() => {
     axios
@@ -87,14 +73,6 @@ export default function Flights(props) {
     setFilterFlights(
       flights.filter((flight) => {
 
-        // console.log(
-        //   "selectedDate",
-        //   selectedDate,
-        //   flight.flightData.departure_at
-        // );
-
-        // console.log("selectedDate", selectedDate, flight.flightData.departure_at)
-
         return (
           flight.flightData.price > minMaxValue[0] &&
           flight.flightData.price < minMaxValue[1] &&
@@ -108,35 +86,23 @@ export default function Flights(props) {
     );
   }, [minMaxValue, flights, selectedDestination, selectedDate]);
 
-  // console.log("this is flight", flights);
 
   const handleAdd = (flightObj, index) => {
 
-   //console.log("THIS IS FLIGHT OBJECT+++++", flightObj)
-  //  const { destination } = flightObj; // destructure so it's easy to access
-  //  const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
-  //  const abc = new Date(departure_at).getTime();
-  // let flight_id = `${airline}-${abc}-${flight_number}` // set this as id for local database
-  // console.log(typeof flight_id)
-
    let user = JSON.parse(localStorage.getItem("YoLowUser"));
    const user_id = user.id;
-  //  console.log ("USER----------", user_id)
+
    axios
    .post(`http://localhost:3001/api/flights/${id}/user/favourites/`, { flightObj, user_id })
    .then(response => {
      const flightsData = {favourited: true, destination: flightObj.destination, flightData: {...response.data}}
-     //console.log("THIS IS RESDATA+++++++", flightsData)
 
      const newFlights = [...flights]
      newFlights[index] = flightsData
-     //console.log("THIS IS RES+++++++", response)
      setFlights(newFlights);
 
    })
   }
-  // console.log("test 25", minMaxValue)
-
 
   return (
     <>
@@ -147,10 +113,8 @@ export default function Flights(props) {
         <Grid
           display="flex"
           className="filters"
-          // container spacing={4}
           justify-content="center"
           alignItems="center"
-          // style={{padding:"0 100px"}}
         >
           <Grid item xs={4}>
             <Item className="filterBox">
