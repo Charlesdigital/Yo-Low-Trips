@@ -39,7 +39,6 @@ export default function Login({ setUser }) {
 
  // making request to the backend server to pull in data
   const login = function() {
-    console.log ("LOGGING IN!!!")
     axios({
       method: "POST",
       url: '/users/login', // uses POXY
@@ -51,7 +50,6 @@ export default function Login({ setUser }) {
       const user = response.data.user;
       setUser(user);
       localStorage.setItem( "YoLowUser", JSON.stringify(user));  //set the user to use multiple screens/page on app
-      // console.log("Success!!!! response is:", response)
     }).catch(err => {
       console.error(err.response.data);
     })

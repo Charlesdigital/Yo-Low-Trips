@@ -19,10 +19,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 
 export default function Navbar({user, setUser, code}) {
-  // const classes = linkStyles();
   const history = useHistory();
-
-  console.log("THIS IS CODE :", code)
 
   const handleLogout = async evt => {
     setUser(null);
@@ -88,7 +85,7 @@ export default function Navbar({user, setUser, code}) {
               <LogoutIcon></LogoutIcon>
               Logout
             </Button>
-          } 
+          }
         </Toolbar>
       </AppBar>
      </React.Fragment>
