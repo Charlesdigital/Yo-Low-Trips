@@ -2,7 +2,6 @@ const { render } = require("../app");
 const db = require("../db")
 const express = require('express');
 const router = express.Router();
-//const dbHelpers = require('./helpers/dbHelpers')(db);
 const helpers = require("../helpers/dbHelpers")(db);
 
 /* GET home page. */
