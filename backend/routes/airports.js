@@ -8,11 +8,9 @@ const helpers = require("../helpers/dbHelpers")(db);
 module.exports = (dbhelper) => {
 
   router.get("/:code", (req, res) => {
-    console.log("test2",req.params.code)
 
     helpers.getAirportCodes(req.params.code)
     .then(function (rows) {
-        // console.log("test7",rows);
         res.header("Access-Control-Allow-Origin", "*");
 
         res.json(
@@ -24,9 +22,7 @@ module.exports = (dbhelper) => {
       });
   });
 
-  // router.get("/" (req, res) => {
-  //   console.log("first airport route", req.body)
-  // });
+
 
   return router;
 };
