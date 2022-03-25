@@ -5,13 +5,12 @@ const helpers = require("../helpers/dbHelpers")(db);
 module.exports = () => {
   router.get("/favourites/:user_id", (req, res) => {
     const user_id = req.params.user_id;
-    // console.log("THIS IS USER!!!!!", user_id)
+
     helpers.getAllFavouritesForUser(user_id)
       .then((result) => {
-      // console.log("RESULT+++++++++++", result)
       const favData = result;
-     
-      //important for CORS error
+
+      //Important for removing CORS error
       res.header("Access-Control-Allow-Origin", "*");
       res.send(favData);
     });
@@ -29,7 +28,7 @@ module.exports = () => {
         res.send(err)
       });
   });
-  
+
   // POST to remove favourite flight in table
   router.post("/delete/:fav_id", (req, res) => {
     // console.log("THIS IS A REQUEST: ", req.params);
@@ -44,6 +43,6 @@ module.exports = () => {
       })
 
   })
-  
+
   return router;
 }
