@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { airportNamesLookup } from "../helpers/airportNamesLookupTable";
+import { airportNamesLookup } from "../../helpers/airportNamesLookupTable";
 
 export default function DestinationFilter(props) {
   // console.log("props.flightData", props.flightData.flights)

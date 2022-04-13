@@ -20,9 +20,9 @@ import StarIcon from '@mui/icons-material/Star';
 
 import { styled } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
-import PriceFilter from "./PriceFilter";
-import DestinationFilter from "./DestinationFilter";
-import DatesFilter from "./DatesFilter";
+import PriceFilter from "./Filters/PriceFilter";
+import DestinationFilter from "./Filters/DestinationFilter";
+import DatesFilter from "./Filters/DatesFilter";
 import {airportNamesLookup} from "../helpers/airportNamesLookupTable";
 import "./Flights.css";
 
