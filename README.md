@@ -4,7 +4,19 @@
 
 ## Setup
 
-Install dependencies with `npm install`.
+##Database
+To startup PostgreSQL sever type ```startpostgres```
+Password for labber = ```labber```
+
+##Backend
+1. cd backend
+2. npm install - to install dependencies
+3. npm start
+
+##Frontend
+1. cd frontend
+2. npm install - to install dependencies
+3. npm start
 
 ## Running Webpack Development Server
 
