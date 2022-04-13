@@ -23,11 +23,9 @@ console.log("SA", sortedArray)
   return (
     <Autocomplete
       onChange={(event, newValue) => {
-        // console.log("NEWVALUE", newValue.flightData.departure_at)
         props.setDate(newValue);
       }}
       onInputChange={(event, newInputValue) => {
-        // console.log("NEWINPUTVALUE", newInputValue)
         props.setDate(newInputValue ? newInputValue : null);
       }}
       sx={{ width: 300 }}
@@ -46,7 +44,6 @@ console.log("SA", sortedArray)
         </Box>
       )}
       renderInput={(params) => (
-        // console.log("params", params),
         <TextField
           {...params}
           label="Choose a departure date"
