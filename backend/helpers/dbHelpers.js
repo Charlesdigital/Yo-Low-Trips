@@ -24,20 +24,20 @@ module.exports = (db) => {
         .catch((err) => err);
     };
 
-    // // Add user to database
-    // const addUser = (firstName, lastName, email, password) => {
-    //     const query = {
-    //         text: `
-    //             INSERT INTO users (first_name, last_name, email, password)
-    //             VALUES ($1, $2, $3, $4) RETURNING *;` ,
-    //         values: [firstName, lastName, email, password]
-    //     };
+    // Add user to database
+    const addUser = (firstName, lastName, email, password) => {
+        const query = {
+            text: `
+                INSERT INTO users (first_name, last_name, email, password)
+                VALUES ($1, $2, $3, $4) RETURNING *;` ,
+            values: [firstName, lastName, email, password]
+        };
 
-    //     return db
-    //     .query(query, [firstName, lastName, email, password])
-    //     .then((result) => result.rows[0]) // return first obj
-    //     .catch((err) => err);
-    // };
+        return db
+        .query(query, [firstName, lastName, email, password])
+        .then((result) => result.rows[0]) // return first obj
+        .catch((err) => err);
+    };
 
     // Get all favourites from a single user given their id
     const getAllFavouritesForUser = (userId) => {
@@ -147,7 +147,7 @@ module.exports = (db) => {
     return {
         getUsers,
         getUserByEmail,
-        // addUser,
+        addUser,
         getAllFavouritesForUser,
         addToFavourite,
         removeFavourite,
