@@ -9,7 +9,7 @@ export default function DatesFilter(props) {
 // const newArray = (props.flightData.map(flight => flight.flightData.departure_at))
 
 const sortedArray = [...new Set(props.flightData.map(item => {
-console.log(item.flightData.departure_at.slice(0, 10))
+console.log("test1",item.flightData.departure_at.slice(0, 10))
 
   return item.flightData.departure_at.slice(0, 10)
 }))]

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import useApplicationDataFavourites from "./hooks/useApplicationDataFavourites";
+import { airportNamesLookup } from "../helpers/airportNamesLookupTable";
+
 import moment from "moment";
 import {
   Typography,
@@ -13,71 +14,16 @@ import {
 //mui icons
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import { ThemeProvider } from "@mui/material/styles";
 
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { airportNamesLookup } from "../helpers/airportNamesLookupTable";
 
 export default function Favourites(props) {
-  const [state, setState] = useState({
-    favourites: [],
-  });
-
-  useEffect(() => {
-    // useEffect tells react to run the request once
-    let user = localStorage.getItem("YoLowUser");
-    user = JSON.parse(user); // convert back to object from JSON.stringify
-    const user_id = user.id;
-    axios
-      .get(`http://localhost:3001/user/favourites/${user_id}`)
-      .then((res) => {
-        const favData = res.data;
-        setState((prev) => {
-          return { ...prev, favourites: favData };
-        });
-      })
-      .catch((err) => {
-        console.log("Error", err);
-      });
-  }, []); // dependency array which specify when the useeffect will fire
-
-  const handleRemove = (fav) => {
-    let fav_id = fav.favid;
-
-    return axios
-      .post(`http://localhost:3001/user/delete/${fav_id}`)
-      .then((response) => {
-        let user = localStorage.getItem("YoLowUser");
-        user = JSON.parse(user); // convert back to object from JSON.stringify
-        const user_id = user.id;
-
-        // use another axios call to fetch the data again
-        axios
-          .get(`http://localhost:3001/user/favourites/${user_id}`)
-          .then((res) => {
-            const favData = res.data;
-            setState((prev) => {
-              return { ...prev, favourites: favData };
-            });
-          })
-          .catch((err) => {
-            console.log("Error", err);
-          });
-      });
-  };
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#0052cc",
-      },
-      secondary: {
-        main: "#edf2ff",
-      },
-    },
-    spacing: 4,
-    shape: {
-      borderRadius: 4,
-    },
-  });
+  const {
+    setState,
+    state,
+    handleRemove,
+    theme,
+  } = useApplicationDataFavourites();
 
   return (
     <div className="SubHeading">
@@ -177,7 +123,6 @@ export default function Favourites(props) {
                           </span>
 
                         </Typography>
-
                       </Grid>
                     </Grid>
                   </Grid>
