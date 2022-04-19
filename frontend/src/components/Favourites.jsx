@@ -1,4 +1,4 @@
-import useApplicationDataFavourites from "./hooks/useApplicationDataFavourites";
+import useApplicationDataFavourites from "./Hooks/useApplicationDataFavourites";
 import { airportNamesLookup } from "../helpers/airportNamesLookupTable";
 
 import moment from "moment";
