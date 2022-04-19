@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import useApplicationDataFlights from "../hooks/useApplicationDataFlights";
 import moment from "moment";
 import "../styles/Flights.css";
 
@@ -50,60 +49,9 @@ export default function Flights(props) {
     textAlign: "center",
   }));
 
-
-  const [minMaxValue, setminMaxValue] = React.useState([0, 1200]);
-  const [flights, setFlights] = useState([]);
-  const [filterFlights, setFilterFlights] = useState([]);
-  const [selectedDestination, setSelectedDestination] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/flights/${id}`)
-      .then((res) => {
-        console.log("axios req data", res.data);
-        const flightsData = res.data;
-        setFlights(flightsData);
-      })
-      .catch((err) => {
-        console.log("Error", err);
-      });
-  }, [id]);
-
-  useEffect(() => {
-    setFilterFlights(
-      flights.filter((flight) => {
-
-        return (
-          flight.flightData.price > minMaxValue[0] &&
-          flight.flightData.price < minMaxValue[1] &&
-          (selectedDestination === null ||
-            flight.destination === selectedDestination) &&
-          (selectedDate === null ||
-            flight.flightData.departure_at.slice(0, 10) ===
-              selectedDate.slice(0, 10))
-        );
-      })
-    );
-  }, [minMaxValue, flights, selectedDestination, selectedDate]);
-
-
-  const handleAdd = (flightObj, index) => {
-
-   let user = JSON.parse(localStorage.getItem("YoLowUser"));
-   const user_id = user.id;
-
-   axios
-   .post(`http://localhost:3001/api/flights/${id}/user/favourites/`, { flightObj, user_id })
-   .then(response => {
-     const flightsData = {favourited: true, destination: flightObj.destination, flightData: {...response.data}}
-
-     const newFlights = [...flights]
-     newFlights[index] = flightsData
-     setFlights(newFlights);
-
-   })
-  }
+  const {
+    minMaxValue, setminMaxValue, flights, filterFlights, selectedDestination,  setSelectedDestination, selectedDate, setSelectedDate, handleAdd
+  } = useApplicationDataFlights();
 
   return (
     <>
