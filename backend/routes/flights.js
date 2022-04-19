@@ -67,7 +67,6 @@ module.exports = () => {
           }
         }
 
-        console.log("RES", flightArrayParse);
         result.json(flightArrayParse);
       });
 
@@ -76,7 +75,6 @@ module.exports = () => {
 
   router.post("/:id/user/favourites", (req,res) => {
     const {id} = req.params;
-    console.log(`THIS IS ORIGIN!!!!!! ${id}`)
     const { flightObj, user_id } = req.body
     const { destination } = flightObj; // destructure so it's easy to access
     const { airline, departure_at, expires_at, flight_number, price, return_at } = flightObj.flightData
