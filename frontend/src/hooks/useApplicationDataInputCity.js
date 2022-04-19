@@ -14,7 +14,7 @@ function requestAirportCode(city) {
   }
 
    //2. pass as a prop to your custom modal
-   const [city,setCity] = useState("");
+  const [city,setCity] = useState("");
   const [open,setOpen] = useState(false);
   const [flightCodeData, setflightCodeData] = useState([]);
    function validate(event, city) {
