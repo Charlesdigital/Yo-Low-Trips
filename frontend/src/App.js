@@ -8,9 +8,7 @@ import {
 } from "react-router-dom";
 import { StyledEngineProvider } from "@mui/material";
 
-import "./App.css";
 
-// import SearchBar from "./components/SearchBar";
 import Navbar from "./components/Navbar";
 import InputCity from "./components/InputCity";
 import Flights from "./components/Flights";

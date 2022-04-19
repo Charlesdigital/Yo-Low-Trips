@@ -4,7 +4,9 @@
 
 
 # About
-This project is a full stack web application where users can input an origin city and get one way flight deals to multiple destination. New flight deals are updated everyday. This web application are for those who are looking for a flight deal and are flexible with date and destination.
+This project is a full stack web application where users can input an origin city and get round trip flight deals to different destinations. New flight deals are updated hourly.
+
+This web application are for those who are looking for a flight deal and are flexible with flight dates and destination.
 
 
 # Project Planning
@@ -14,11 +16,16 @@ https://www.figma.com/file/xIsjaQgt5A9zEaCCqdme5p/Final-Project?node-id=0%3A1
 
 ![](frontend/src/assets/images/Yo-Low-Trips-Design.png)
 
-# How to run locally instructions
+# Instructions on how to run locally
+
+In order to successfully run the full application follow all of these these instructions
 
 # `Database`
 To startup PostgreSQL sever type ```startpostgres```
 Password for labber = ```labber```
+
+To reset the database ```cd backend```
+```npm run db:reset```
 
 # `Backend`
 1. cd backend
@@ -29,7 +36,6 @@ Password for labber = ```labber```
 1. cd frontend
 2. npm install - to install dependencies
 3. npm start
-
 
 
 # Dependencies
