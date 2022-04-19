@@ -41,7 +41,7 @@ To reset the database ```cd backend```
 
 Sign in by using:
 
-Email Address: ```personone@email.com````
+Email Address: ```personone@email.com```
 Password: ```test```
 
 # Dependencies
