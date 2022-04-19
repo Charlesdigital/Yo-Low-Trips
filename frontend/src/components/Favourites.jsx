@@ -10,7 +10,6 @@ import {
   Divider
 } from "@mui/material";
 
-import "./Flights.css"
 //mui icons
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
