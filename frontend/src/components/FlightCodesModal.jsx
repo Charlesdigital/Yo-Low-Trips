@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import "./FlightCodesModal.css";
+import "../styles/FlightCodesModal.css";
 
 const style = {
   position: "absolute",

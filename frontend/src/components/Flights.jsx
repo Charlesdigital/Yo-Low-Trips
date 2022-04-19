@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import "../styles/Flights.css";
+
 import {
   Typography,
   Card,
@@ -24,7 +26,6 @@ import PriceFilter from "./Filters/PriceFilter";
 import DestinationFilter from "./Filters/DestinationFilter";
 import DatesFilter from "./Filters/DatesFilter";
 import {airportNamesLookup} from "../helpers/airportNamesLookupTable";
-import "./Flights.css";
 
 
 export default function Flights(props) {
