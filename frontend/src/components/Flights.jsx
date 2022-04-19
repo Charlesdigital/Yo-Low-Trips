@@ -27,7 +27,7 @@ import DatesFilter from "./Filters/DatesFilter";
 import {airportNamesLookup} from "../helpers/airportNamesLookupTable";
 
 
-export default function Flights(props) {
+function Flights(props) {
   let { id } = useParams();
 
   const { appFlightCode } = props;
@@ -179,3 +179,5 @@ export default function Flights(props) {
     </>
   );
 }
+
+export default Flights;

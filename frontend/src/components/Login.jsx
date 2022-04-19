@@ -32,7 +32,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login({ setUser }) {
+function Login({ setUser }) {
   const history = useHistory();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -138,3 +138,5 @@ export default function Login({ setUser }) {
 Login.propTypes = {
   setUser: PropTypes.func.isRequired
 }
+
+export default Login;

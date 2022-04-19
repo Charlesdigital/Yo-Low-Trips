@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { airportNamesLookup } from "../../helpers/airportNamesLookupTable";
 
-export default function DestinationFilter(props) {
+function DestinationFilter(props) {
 
   const filteredArray = [
     ...new Set(
@@ -38,7 +38,7 @@ export default function DestinationFilter(props) {
         </Box>
       )}
       renderInput={(params) => (
-        console.log("params", airportNamesLookup[params.inputProps.value]),
+        // console.log("params", airportNamesLookup[params.inputProps.value]),
         (
           <TextField
             {...params}
@@ -56,6 +56,8 @@ export default function DestinationFilter(props) {
     />
   );
 }
+
+export default DestinationFilter;
 
 // {city: "", country: "", code: ""},
 

@@ -6,7 +6,7 @@ function valuetext(value) {
   return `${value}`;
 }
 
-export default function RangeSlider(props) {
+function RangeSlider(props) {
 const {minMaxValue, setminMaxValue} = props
 
   const handleChange = (event, newValue) => {
@@ -26,3 +26,5 @@ const {minMaxValue, setminMaxValue} = props
     </Box>
   );
 }
+
+export default RangeSlider;
