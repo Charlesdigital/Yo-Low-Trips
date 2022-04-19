@@ -68,8 +68,6 @@ module.exports = (db) => {
             Value: [favId, userId, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at]
         };
 
-        // console.log(`THIS IS ID: ${favId} && THIS IS USER ID: ${userId}`);
-
         return db
             .query(query, [favId, userId, origin, destination, price, airline, flight_number, departure_at, return_at, expires_at])
             .then(result => result.rows[0])
@@ -125,12 +123,9 @@ module.exports = (db) => {
             JOIN airports ON cities.id = city_id
             WHERE name = '${name}'`,
         };
-        // console.log("test8", query)
         return db.query(query)
             .then(result => {
-                // console.log("test9", result)
 
-            console.log("test6", result.rows)
             return result.rows
             })
             .catch(err => err);
@@ -145,7 +140,6 @@ module.exports = (db) => {
 
         return db.query(query, [flightNumber])
             .then(result => {
-                // console.log("test26", result)
                 return result.rows
              })
             .catch(err => err);

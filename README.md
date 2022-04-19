@@ -37,6 +37,12 @@ To reset the database ```cd backend```
 2. npm install - to install dependencies
 3. npm start
 
+# `How to Sign in`
+
+Sign in by using:
+
+Email Address: ```personone@email.com````
+Password: ```test```
 
 # Dependencies
 

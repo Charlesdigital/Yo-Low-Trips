@@ -5,10 +5,6 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { airportNamesLookup } from "../../helpers/airportNamesLookupTable";
 
 export default function DestinationFilter(props) {
-  // console.log("props.flightData", props.flightData.flights)
-
-  // const [value, setValue] = React.useState(options[0]);
-  // const [inputValue, setInputValue] = React.useState('');
 
   const filteredArray = [
     ...new Set(
@@ -18,7 +14,6 @@ export default function DestinationFilter(props) {
     ),
   ];
 
-  //console.log("SA", filteredArray);
   return (
     <Autocomplete
       onChange={(event, newValue) => {
