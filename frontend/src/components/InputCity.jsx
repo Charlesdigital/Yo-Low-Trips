@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import axios from "axios";
+import useApplicationDataInputCity from "../hooks/useApplicationDataInputCity";
 
 /*** Files ***/
 import "../styles/InputCity.css";
@@ -9,33 +8,11 @@ import FlightCodesModal from "./FlightCodesModal";
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 
-//Get all airport codes based on the city submitted
-function requestAirportCode(city) {
-  return axios.get(`/airports/${city}`)
-  .then(function (response) {
-    return response
-  })
-  .catch(function (error) {
-    return error
-  });
-}
-
 export default function InputCity(props) {
 
-  const [city, setCity] = useState("");
-  const [open,setOpen] = useState(false);
-  const [flightCodeData, setflightCodeData] = useState([]);
-
-   //pass as a prop to your custom modal
-  function validate(event, city) {
-    event.preventDefault()
-    requestAirportCode(city).then((response) => {
-      if(response.data) {
-        setflightCodeData(response.data);
-        setOpen(true);
-      }
-    })
-  }
+  const {
+    city, setCity, open, setOpen, flightCodeData, validate
+  } = useApplicationDataInputCity();
 
   return (
     <>
