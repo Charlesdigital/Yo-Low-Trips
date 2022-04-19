@@ -17,7 +17,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { ThemeProvider } from "@mui/material/styles";
 
 
-export default function Favourites(props) {
+function Favourites(props) {
   const {
     setState,
     state,
@@ -135,3 +135,5 @@ export default function Favourites(props) {
     </div>
   );
 }
+
+export default Favourites;

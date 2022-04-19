@@ -8,7 +8,7 @@ import FlightCodesModal from "./FlightCodesModal";
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 
-export default function InputCity(props) {
+function InputCity(props) {
 
   const {
     city, setCity, open, setOpen, flightCodeData, validate
@@ -50,3 +50,5 @@ export default function InputCity(props) {
     </>
   );
 }
+
+export default InputCity;

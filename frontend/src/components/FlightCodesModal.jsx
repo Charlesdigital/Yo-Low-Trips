@@ -22,7 +22,7 @@ const style = {
 
 
 // FlightCodesModal is a child of InputCity
-export default function FlightCodesModal(props) {
+function FlightCodesModal(props) {
   let history = useHistory();
   const handleClose = () => props.setOpen(false);
 
@@ -56,3 +56,5 @@ export default function FlightCodesModal(props) {
     </div>
   );
 }
+
+export default FlightCodesModal;

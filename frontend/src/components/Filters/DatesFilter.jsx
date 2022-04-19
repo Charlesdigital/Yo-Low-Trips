@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import moment from "moment";
 
-export default function DatesFilter(props) {
+function DatesFilter(props) {
 
 
 const sortedArray = [...new Set(props.flightData.map(item => {
@@ -49,3 +49,5 @@ const sortedArray = [...new Set(props.flightData.map(item => {
     />
   );
 }
+
+export default DatesFilter;

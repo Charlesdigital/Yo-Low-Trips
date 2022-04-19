@@ -18,7 +18,7 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
-export default function Navbar({user, setUser, code}) {
+function Navbar({user, setUser, code}) {
   const history = useHistory();
 
   const handleLogout = async evt => {
@@ -91,3 +91,5 @@ export default function Navbar({user, setUser, code}) {
      </React.Fragment>
   )
 }
+
+export default Navbar;
