@@ -43,7 +43,7 @@ const useApplicationDataFlights = () => {
         );
       }, [minMaxValue, flights, selectedDestination, selectedDate]);
 
-      //2. Set favourite to true and post to store it in the database
+      //3. Set favourite to true and post to store it in the database
       const handleAdd = (flightObj, index) => {
         let user = JSON.parse(localStorage.getItem("YoLowUser"));
         const user_id = user.id;

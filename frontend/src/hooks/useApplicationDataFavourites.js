@@ -70,7 +70,7 @@ const useApplicationDataFavourites = () => {
         },
       });
 
-  return { setState, state, handleRemove, theme }
+  return { state, handleRemove, theme }
 
 }
 
