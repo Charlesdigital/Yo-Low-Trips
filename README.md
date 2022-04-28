@@ -6,11 +6,11 @@
 # About
 This project is a full stack web application where users can input an origin city and get round trip flight deals to different destinations. New flight deals are updated hourly.
 
-This web application are for those who are looking for a flight deal and are flexible with flight dates and destination.
+This web application are for those who are looking for a flight deals and are flexible with flight dates and destination.
 
 
 # Project Planning
-Project planning from idea to design. ERD and a response of the flight data API
+Project planning from idea to design. ERD and a response of the flight data API.
 
 https://www.figma.com/file/xIsjaQgt5A9zEaCCqdme5p/Final-Project?node-id=0%3A1
 
@@ -18,7 +18,7 @@ https://www.figma.com/file/xIsjaQgt5A9zEaCCqdme5p/Final-Project?node-id=0%3A1
 
 # Instructions on how to run locally
 
-In order to successfully run the full application follow all of these these instructions
+In order to successfully run the full application follow all of these instructions.
 
 # `Database`
 To startup PostgreSQL sever type ```startpostgres```
@@ -55,4 +55,4 @@ Password: ```test```
 
 # RoadMap
 
-1. Build a travel planner - A calendar modal will appear where user can select a date range. The range of days will appear on the side on a new page and users can input activities on an hourly base.
+1. Build a travel planner - A calendar modal will appear where user can select a date range. The range of days will appear on the side on a new page and users can input activities hourly.
