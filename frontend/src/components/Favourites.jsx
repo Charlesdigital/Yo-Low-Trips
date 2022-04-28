@@ -19,7 +19,6 @@ import { ThemeProvider } from "@mui/material/styles";
 
 function Favourites(props) {
   const {
-    setState,
     state,
     handleRemove,
     theme,
